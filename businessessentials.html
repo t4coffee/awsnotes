@@ -63,7 +63,7 @@
       Cloud Computing Definition
     </div>
     <div class="col-6 content">
-      On-demand delivery of IT resources which you pay only for what you use
+      On-demand delivery over the Internet of IT resources, which you pay only for what you use
     </div>
     <div class="col-2"></div>
 
@@ -76,7 +76,7 @@
       History of AWS
     </div>
     <div class="col-6 content">
-      2003 - Paper by 2 guys about SQS<br>
+      2003 - Paper by Chris Pinkman and Benjamin Black about SQS<br>
       2004 – Launch of SQS<br>
       2006 – Launch of AWS<br>
       2007 – Launch of EC2 and 108,000 developers signed on<br>
@@ -95,7 +95,19 @@
       Architecture
     </div>
     <div class="col-6 content">
-      17 Regions worldwide, each with a minimum of 2 Availability Zones, each AZ with a minimum of 2 data centers
+      <p>17 Regions worldwide, each with a minimum of 2 Availability Zones, each AZ with a minimum of 2 data centers.
+      The public regions are listed in the console, then there are private regions that are not listed.
+      A region represents the georgraphical location of where the data will reside.</p>
+      <p>Availability Zones (AZ) constitute physically seperated areas within a region.
+      Takes a minimum of of two AZ's to make a region.</p>
+      <p>A Data Center (DC) is the location of the servers, storage devices, network elements, security devices, and other facility infrastructure.
+      Takes two DC's to make an AZ.</p>
+      <p>A Virtual Private Cloud (VPC) is a logical clusterings of resources within a region that can span multiple AZ's.
+      Within a VPC there are multiple subnets that technicall map to the AZ's within the region.
+      For example, the North Virginia region has 6 AZ's and a default VPC with 6 subnets.
+      You can create new subnets and assign them to be PUBLIC or PRIVATE.
+      The default subnet inside a VPC is publicly accessible.</p>
+      <img src="media/regions.png" alt="regions">
     </div>
     <div class="col-2"></div>
 
@@ -103,7 +115,6 @@
 
     <div class="row align-items-center">
       <div class="col-2"></div>
-
       <div class="col-2 content-left">
         Business Challenges in IT
       </div>
@@ -111,8 +122,33 @@
         Budget, time to market, scalability, infra management, security and compliance
       </div>
       <div class="col-2"></div>
-
     </div>
+
+    <div class="row align-items-center">
+      <div class="col-2"></div>
+      <div class="col-2 content-left">
+        Security
+      </div>
+      <div class="col-6 content">
+        Is a shared responsibility between Amazon and the Admin<br>
+        Amazon acts as a trusted advisor and uses features such as Security Groups, Firewalls, public/private keys, and encryption.<br><br>
+        <img src="media/srm.png" alt="sharedresponsibilitymodel">
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+  <div class="row align-items-center">
+    <div class="col-2"></div>
+    <div class="col-2 content-left">
+      High Availability and Fault Tolerance
+    </div>
+    <div class="col-6 content">
+      Always serves purpose despite failure vs still operates at stable capacity and without any performance degredation<br>
+      HA and FT: DynamoDB and Route53<br>
+      HA only: EC2 and S3<br>
+    </div>
+    <div class="col-2"></div>
+  </div>
 
     <div class="row align-items-center row-border">
       <div class="col-2"></div>
