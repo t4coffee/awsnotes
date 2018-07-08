@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="studynotes.css">
+
+    <title>AWS Study Notes</title>
+  </head>
+  <body>
+<div class="top_navbar">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="#">T's Notes</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#aws">Overview</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#compute">Compute</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#storage">Storage</a>
+          </li>
+        </ul>
+        <form class="form-inline mt-2 mt-md-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+  </div>
+    <div class="header">
+    <h1>AWS</h1>
+    <h2>Solution Architect Associate </h2>
+    <h3>Exam Study Notes</h3>
+    </div>
+<div class="container-fluid">
+  <div class="row first-row-border" >
+    <div class="col-2"></div>
+    <div class="col-2 section-img">
+      <img src="media/aws.png" alt="AWS">
+    </div>
+    <div class="col-6 section-title">
+      <h4 id="aws">Amazon Web Services Overview</h4>
+    </div>
+    <div class="col-2"></div>
+  </div>
+
+  <div class="row align-items-center">
+    <div class="col-2"></div>
+    <div class="col-2 content-left">
+      Cloud Computing
+    </div>
+    <div class="col-6 content">
+        On-demand delivery of IT resources over the Internet with pay-as-you-go pricing <br>
+        <b>Advantages<br></b>
+          1. Trade-off CAPEX for OPEX<br>
+          2. Benefit from Economies of Scale<br>
+          3. No need to predict capacity requirements<br>
+          4. Go global in minutes (leverage regions)<br>
+          5. Agility to apply changes to environment<br>
+          6. No money spent on running and maintaining a data center<br>
+        </div>
+    <div class="col-2"></div>
+  </div>
+
+  <div class="row align-items-center">
+    <div class="col-2"></div>
+    <div class="col-2 content-left">
+      CAF - Cloud Adoption Framework
+    </div>
+    <div class="col-6 content">
+      Provides guidance and support for organizations that choose to move to the cloud<br>
+      <b>Perspectives to consider<br></b>
+      <img src="media/caf.png" alt="CAF"><br>
+    </div>
+    <div class="col-2"></div>
+  </div>
+
+  <div class="row align-items-center">
+    <div class="col-2"></div>
+    <div class="col-2 content-left">
+      History of AWS
+    </div>
+    <div class="col-6 content">
+      2003 - Paper by Chris Pinkman and Benjamin Black about SQS<br>
+      2004 – Launch of SQS<br>
+      2006 – Launch of AWS<br>
+      2007 – Launch of EC2 and 108,000 developers signed on<br>
+      2012 – First Re:Invent Conference<br>
+      2013 – Introduction of certifications<br>
+      2020 – Renewable energy to power all AWS data centers worldwide<br>
+    </div>
+    <div class="col-2"></div>
+  </div>
+
+  <div class="row align-items-center">
+    <div class="col-2"></div>
+    <div class="col-2 content-left">
+      Global Infrastructure
+    </div>
+    <div class="col-6 content">
+      <b>Data Center (DC)</b><br>
+        is the facility that houses the servers, storage devices, network elements, security devices, and other AWS infrastructure.  No AWS DC is "cold".  All devices are ODM - Original Design Manufacturer, which is custom for AWS. AWS even uses their own network protocol stack. <br>
+      <b>Availability Zone (AZ)</b><br>
+      made up of one or more DCs, exist within a region, are representations of physically seperated data centers with low latency, private links between them.  Designed for fault isolation and no single points of failure.  All AZs are connected with redundant links to multiple Tier-1 transit providers.<br>
+      <b>Regions</b><br>
+      geographical areas where Amazon data centers are located and represents the georgraphical location of where the data will reside.  Made up of two or more AZs.  Communication between regions uses the AWS backbone, a private global network.  The public regions are listed in the console, then there are private regions (e.g. US GovCloud) and local regions (e.g. Asia Pacific Osaka that are not listed.  <br>
+      As of June 2018, there are 18 regions worldwide and 55 AZs.  There are 4 new regions and 12 AZs that are announced. <br>
+      <b>Edge Locations</b><br>
+      AWS has 107 Points of Presence (PoPs)<br>
+      96 Edge Locations and 11 Regional Edge Caches in 55 cities across 24 countries <br>
+      These are used for Route53 and CloudFront<br>
+      Edge Locations is NOT equivalent to a region or an AZ<br>
+    </div>
+    <div class="col-2"></div>
+  </div>
+
+    <div class="row align-items-center">
+      <div class="col-2"></div>
+      <div class="col-2 content-left">
+        Business Challenges in IT
+      </div>
+      <div class="col-6 content">
+        1. Budget <br>
+        2. Time to Market<br>
+        3. Scalability <br>
+        4. Infrastructure Management<br>
+        5. Security and Compliance<br>
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-2"></div>
+      <div class="col-2 content-left">
+        Security
+      </div>
+      <div class="col-6 content">
+        Is a shared responsibility between AWS and the Admin<br>
+        AWS acts as a trusted advisor and uses features such as Security Groups, Firewalls, public/private keys, and encryption.<br>
+        You have AWS Global Infrastructure (Regions, AZs, Edge Locations) and Foundation Services (Compute, Storage, Database, Networking) at your disposal<br><br>
+        AWS is responsible for:<br>
+          1. Physical security of DCs<br>
+          2. Hardware infrastructure: servers and storage (including decommissioning storage disks)<br>
+          3. Software infrastructure: host OS, service apps, virtualization isolation<br>
+          4. Network infrastructure: routers, switches, LBs, FWs, network monitoring at external boundaries, intrusion detection<br>
+        You are responsible for<br>
+          1. Instance OS including patching and maintenance<br>
+          2. Application security and access<br>
+          3. Security groups<br>
+          4. OS/Instance firewalls including IDS and IPS<br>
+          5. Network configuration (of VPC)<br>
+          6. Account management and seperation of delegation<br>
+          7. User data: client/server side encryption<br>
+        <img src="media/srm.png" alt="sharedresponsibilitymodel">
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+  <div class="row align-items-center">
+    <div class="col-2"></div>
+    <div class="col-2 content-left">
+      High Availability (HA) and Fault Tolerance (FT)
+    </div>
+    <div class="col-6 content">
+      "Always design your AWS environment for failure" - Anonymous<br>
+      HA: always serves purpose despite component failure<br>
+      FT: still operates at stable capacity and without any performance degredation<br>
+      HA and FT: DynamoDB and Route53<br>
+      HA only: EC2 and S3<br>
+      Example: Your app needs 6 instances for stable performance, how do you achieve HA and FT?<br>
+      Answer: run 6 instances in each of at least two different AZ's
+    </div>
+    <div class="col-2"></div>
+  </div>
+
+  <div class="row align-items-center">
+    <div class="col-2"></div>
+    <div class="col-2 content-left">
+      Managed and Un-Managed Services
+    </div>
+    <div class="col-6 content">
+      Managed Services: HA and FT are responsibility of AWS e.g. DynamoDB and Route53 <br>
+      Unmanaged Services: HA and FT are the responsibility of the Admin
+    </div>
+    <div class="col-2"></div>
+  </div>
+
+  <div class="row align-items-center">
+    <div class="col-2"></div>
+    <div class="col-2 content-left">
+      Disaster Recovery (DR)
+    </div>
+    <div class="col-6 content">
+      DR design is a Cost vs Risk activity to balance Recovery Time Objective (RTO) and Recovery Point Objective (RPO)<br>
+      RTO - How quickly will the systems recover? <br>
+      RPO - How much data can you afford to lose? <br><br>
+      DR Deployment Strategies<br>
+      1. Backup and Restore: fully manual process<br>
+      2. Pilot Light:  powered off instances are located in another AZ/Region; the database is synchronously kept up to date<br>
+      3. Warm Standby: replicated production environment in another AZ/Region but at a lower capacity<br>
+      4. Multi-Site: fully replicated capacity active/active configuration
+    </div>
+    <div class="col-2"></div>
+  </div>
+
+  <div class="row align-items-center">
+    <div class="col-2"></div>
+    <div class="col-2 content-left">
+      Support Plans
+    </div>
+    <div class="col-6 content">
+      All customers receive Basic Support included with their AWS account. All plans, including Basic Support, provide 24x7 access to customer service, AWS documentation, whitepapers, and support forums.<br>
+      Basic: access to 7 core Trusted Advisor health checks <br>
+      Developer: business hours access to Cloud Support Associates via email, and access to 7 core Trusted Advisor health checks<br>
+      Business: 24x7 access to Cloud Support Engineers via email/chat/phone, and access to the full set of Trusted Advisor health checks<br>
+      Enterprise: 24x7 access to Sr. Cloud Support Engineers via email/chat/phone, and access to the full set of Trusted Advisor health checks<br>
+    </div>
+    <div class="col-2"></div>
+  </div>
+
+  <div class="row align-items-center">
+    <div class="col-2"></div>
+    <div class="col-2 content-left">
+      Billing
+    </div>
+    <div class="col-6 content">
+      Cost Explorer: graph, visualize, and analyze your spending<br>
+      Budgets: create custom budgets with automated alerts for usage, forecast, and thresholds<br>
+      Reports: detailed data to better analyze where the costs are per AWS service<br>
+      Cost Allocation Tags: has to be activated, is associated with AWS service and can be tracked throughout the billing pipeline<br>
+      <a href=http://calculator.s3.amazonaws.com/index.html>Simple Monthly Calculator</a>
+    </div>
+    <div class="col-2"></div>
+  </div>
+<br>
+<br>
+<br>
+<br>
+
+
+    <!--End of Overview Section, start of Compute Section -->
+
+
+    <div class="row align-items-center row-border">
+      <div class="col-2"></div>
+      <div class="col-2 section-img">
+        <img src="media/ec2.png" alt="EC2">
+      </div>
+      <div class="col-6 section-title">
+        <h4 id="compute">Compute</h4>
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-2"></div>
+      <div class="col-2 content-left">
+        EC2 - Elastic Cloud Compute
+      </div>
+      <div class="col-6 content">
+        Virtual computing environment (instances) that you can launch and manage from a GUI or from CLI code<br>
+        Supports most OS (Windows, RedHat, SUSE, Ubuntu, Amazon Linux)<br>
+        Instances are scalable and optimizable<br>
+        Consider the following before you create: core count, memory size, storage size and type, network performance, and CPU architecture<br><br>
+
+        <b>Pricing Models</b><br>
+        1. On-demand: pay as you go compute resources. Low cost, flexible.<br>
+        2. Spot instances: bidding on instances based on supply/demand, pay the price per instance-hour set at the start of each instance-hour for the entire hour (spot price).  Gives 2 minute prior notification before stopping an instance for someone with a higher bid.  Good for large scale, dynamic workloads.<br>
+        3. Reserved instances: full upfront, partial upfront, and no upfront payment options for 1 and 3 	year contract durations.  Good to predict costs and know available capacity needed.<br>
+        4. Dedicated Host: you rent the underlying hardware, single-tenancy model, pay hourly, can be upto 75% cheaper than on-demand.  You can control licensing. Good for compliance and regulatory requirements.<br><br>
+
+        Per Second Billing: minimum increment is 60 seconds, so even if you run for 10 seconds, you will be charged for 60<br>
+        Available for On-Demand, Reserved, Spot instances, all regions and AZs, only on Amazon Linux and Ubuntu.  Everything else is per-hour.<br><br>
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-2"></div>
+      <div class="col-2 content-left">
+        AMI - Amazon Machine Image
+      </div>
+      <div class="col-6 content">
+        Regional specific object with an AMI-ID that is unique within that region<br>
+        An image snapshot of your EC2 instance OS and application configuration<br>
+        Selection is made from your own customized instance or AWS marketplace or AWS community<br>
+        To replicate, copy snapshot to S3, move regions, create AMI from snapshot (gives different ID)
+        </div>
+      <div class="col-2"></div>
+    </div>
+
+
+    <div class="row align-items-center">
+      <div class="col-2"></div>
+      <div class="col-2 content-left">
+        Instances
+      </div>
+      <div class="col-6 content">
+        Choosing the correct instance type will help with your application performance<br>
+        Soft Limit: 20 instances per account, after which the console will throw an error if you try to load more<br>
+        Speak with support to increase the limit for you<br><br>
+
+        <b>General Purpose Instances</b><br>
+        Baseline of CPU performance with memory to CPU ratios suitable for most general purpose applications and come with fixed performance (M5, M4) or burstable performance (T2)<br><br>
+
+        <b>Compute Optimized Instances (C4, C5)</b><br>
+        Use the latest Intel Skylake<br>
+        Optimized for compute-instensive workloads and for EBS<br>
+        Use Cases: High performance web servers, Scientific modeling, Batch processing, Distributed analytics, High-performance computing (HPC), Machine/deep learning, Ad serving, Multiplayer gaming, Video encoding<br><br>
+
+        <b>Storage Optimized Instances (H1, I3, D2)</b><br>
+        Optimized for storage-instensive workloads (magnetic disk or NVMe)<br>
+        H1 Instances: For applications that require low-cost, high disk throughput and high sequential disk I/O access to large data sets<br>
+        Use Cases: MapReduce, Distributed file systems (HDFS, MapR-FS), Network file systems, Log or data processing apps (Kafka), Big data workloads<br>
+        I3 Instances: Non-Volatile Memory Express (NVMe) SSD backed instanced<br>
+        Low latency and high random I/O performance, high sequential read throughput<br>
+        High IOPS at a low cost<br>
+        3.3 millions random IOPS at 4-KB block size, 16 Gbps disk throughput<br><br>
+
+        <b>Memory Optimized Instances (R4, X1, X1e)</b><br>
+        For memory intensive applications such as databases and memory caching applications<br>
+        Economical price per GB of RAM<br><br>
+
+        <b>Accelerated Computing Instances (P2, P3, G3, F1)</b><br>
+        Gives direct access to FPGA hardware<br>
+        For custom hardware accelerators using FPGA algorithms
+
+        </div>
+      <div class="col-2"></div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-2"></div>
+      <div class="col-2 content-left">
+        Tagging
+      </div>
+      <div class="col-6 content">
+        Always tag instances with a key-value pair in order to keep management and administration simple
+        </div>
+      <div class="col-2"></div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-2"></div>
+      <div class="col-2 content-left">
+        Lambda
+      </div>
+      <div class="col-6 content">
+        Event driven or scheduled functions that interact with AWS services<br>
+        Functions written in different languages (e.g. Python)<br>
+        Limits on functions: 3GB memory, 5 minute runtime<br>
+        Charged on count of function invokes<br>
+        Usually run within a single region, can also be invoked within a VPC to run a private function <br>
+        Can also be used with IAM rules
+        </div>
+      <div class="col-2"></div>
+    </div>
+
+
+    <div class="row align-items-center">
+      <div class="col-2"></div>
+      <div class="col-2 content-left">
+        Meta-Data
+      </div>
+      <div class="col-6 content">
+        #curl http://169.254.169.254/latest/meta-data/<br>
+        Can find all details about your instance via running the curl or wget command within the instance CLI<br>
+        2-min spot notification is sent here, so you have to constantly poll the directory<br>
+        Here you can also find the Public IP of your instance (instead of going through the console)
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-2"></div>
+      <div class="col-2 content-left">
+        Other Details on EC2
+      </div>
+      <div class="col-6 content">
+        Reserved Instances are just a billing scheme. You can purchase at Region Level or at AZ level; regional level is better because if you buy an xlarge instance then you can run 2 large ones.<br>
+        Also can do a "Scheduled" Reserve i.e. 1 year reserved, compute between 01:00 and 03:00.  Halfway towards serverless.  <br>
+        You can re-sell your instances in the AWS marketplace if you don't need them anymore but the contract didn't expire. <br>
+        And You can upgrade your reserved host model.<br><br>
+
+        Spot instance hibernation: You can basically pause an EBS backed instance, resumed by the Spot service when your defined max price is less than the Spot price. <br>
+        Crucial to have a hybernation agent and to have an encrypted Root volume.  <br>
+        Instance memory is stored on the root volume when hybernated.<br><br>
+
+        Enhanced Networking: currently supported using SR-IOV (Single Root I/O Virtualization). <br>
+        SR-IOV is a method of device virtualization that provides higher I/O performance and lower CPU utilization compared to traditional implementations.
+        <br>For supported Amazon EC2 instances, this feature provides higher packet per second (PPS) performance, lower inter-instance latencies, and very low network jitter.
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+
+
+
+
+
+    <!--End of Compute Section, start of Storage Section -->
+
+
+
+
+    <div class="row align-items-center row-border">
+      <div class="col-2"></div>
+      <div class="col-2 section-img">
+        <img src="media/s3.png" alt="S3">
+      </div>
+      <div class="col-6 section-title">
+        <h4 id="storage">Storage</h4>
+      </div>
+      <div class="col-2"></div>
+
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-2"></div>
+
+      <div class="col-2 content-left">
+        Simple Storage Service (S3)
+      </div>
+      <div class="col-6 content">
+        <li>Standard:	99.999999999% durability, 99.99% availability</li>
+	      <li>Infrequent Access: 99.999999999% durability, 99.99% availability</li>
+        <li>Reduced Redundancy: 99.99% durability, 99.99% availability, for data that can be reproduced</li>
+	      <li>Glacier: 99.999999999% durability, 99.99% availability, for archiving, takes 3-5 hours to retrieve data</li>
+      </div>
+      <div class="col-2"></div>
+
+    </div>
+
+
+  </div>
+  <div class="footer">
+    <p>Footer</p>
+  </div>
+</body>
+</html>
