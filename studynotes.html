@@ -27,6 +27,9 @@
             <a class="nav-link" href="#compute">Compute</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="#network">Network</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="#storage">Storage</a>
           </li>
         </ul>
@@ -353,6 +356,36 @@
     <div class="row align-items-center">
       <div class="col-2"></div>
       <div class="col-2 content-left">
+        Auto-Scaling
+      </div>
+      <div class="col-6 content">
+      Launches or terminates instances based on specific conditions<br>
+      Automatically registers new instances with LBs <br>
+      Can launch across AZs<br><br>
+
+      Set policy for AutoScalingGroup where instances are created and destroyed based on parameters such as: <br>
+      Desired count of instances, Minimum and Maximum instance count<br>
+      One LC corresponds to One ASG.<br>
+      Correct setup of AutoScalingGroup and LC can protect you from DDoS and high fees ($)	<br>
+      Instance are configured in Launch Configuration (LC) or by custom AMI<br>
+
+      Console Status Checks are used to make Auto-Scaling decisions (can be accessed via CloudWatch).  <br>
+      CloudWatch alarms have Auto-Scaling controls built in and can be customized per use case<br>
+      Launch Configs cannot be altered after creation<br>
+      Using ASG to manage Software Releases<br>
+      <br>1. Create a new AMI with your latest application
+      <br>2. Create new ASG with new LC
+      <br>3. From LB based on new sessions, switch over ASG's
+      Make sure to change the ASG "Health Check Type" from "EC2" to "ELB"<br><br>
+
+      Limit: 200 ASGs and 200 LCs per region
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-2"></div>
+      <div class="col-2 content-left">
         Lambda
       </div>
       <div class="col-6 content">
@@ -402,15 +435,313 @@
       </div>
       <div class="col-2"></div>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!--End of Compute Section -->
+
+
+
+    <!-- Start of Network and Content Delivery Section-->
+
+        <div class="row align-items-center row-border">
+          <div class="col-2"></div>
+          <div class="col-2 section-img">
+            <img src="media/netw.png" alt="NET">
+          </div>
+          <div class="col-6 section-title">
+            <h4 id="network">Network and Content Delivery</h4>
+          </div>
+          <div class="col-2"></div>
+        </div>
+
+        <div class="row align-items-center">
+          <div class="col-2"></div>
+          <div class="col-2 content-left">
+            VPC - Virtual Private Cloud
+          </div>
+          <div class="col-6 content">
+            Regional level object<br>
+            A comprehensive set of virtual networking capabilities that allow customers to provision logically isolated virtual network to host AWS resources.  <br>
+            You can create multiple VPCs within the same region and you can include resources in more than one AZ withing a single VPC<br>
+            You can connect VPCs in different regions to each other without going through the Public Internet<br>
+
+            Within a VPC there are multiple subnets that technically map to the AZ'swithin the region.   <br>
+            For example, the North Virginia region has 6 AZ's and a default VPC with 6 subnets.  You can create new subnets and assign them to be public or private.  The default subnet inside a VPC is publicly accessible.<br><br>
+            You configure the following within a VPC:<br>
+            1. IP Subnets<br>
+            2. Routing tables <br>
+            3. Gateways<br>
+            4. Security settings<br>
+            <img src="media/vpc.png">
+          </div>
+          <div class="col-2"></div>
+        </div>
+
+        <div class="row align-items-center">
+          <div class="col-2"></div>
+          <div class="col-2 content-left">
+            VPC Peering
+          </div>
+          <div class="col-6 content">
+            A one-to-one relationship between two VPCs, without any transitive connections.  Can be inter and intra region.  <br>
+            Can't have overlapping subnets<br>
+            Once established, traffic will flow between peer VPCs using private IP addresses<br>
+            Keep RT and SGs in check.<br>
+            Always keep track of data transfer charges.<br>
+            <img src="media/vpcpeer.png">
+          </div>
+          <div class="col-2"></div>
+        </div>
+
+                <div class="row align-items-center">
+                  <div class="col-2"></div>
+                  <div class="col-2 content-left">
+                    Routing Tables
+                  </div>
+                  <div class="col-6 content">
+                    A route table contains a set of rules, called routes, that are used to determine where network traffic is directed. <br>
+                    Each subnet in your VPC must be associated with a route table; the table controls the routing for the subnet. A subnet can only be associated with one route table at a time, but you can associate multiple subnets with the same route table. <br>
+                    You cannot delete the main route table, but you can replace the main route table with a custom table that you've created.<br>
+                    Every route table contains a local route for communication within the VPC <br>
+
+                  </div>
+                  <div class="col-2"></div>
+                </div>
+
+                <div class="row align-items-center">
+                  <div class="col-2"></div>
+                  <div class="col-2 content-left">
+                    NAT Gateway vs NAT Instance
+                  </div>
+                  <div class="col-6 content">
+                  <img src="media/nat2.png"><br>
+                  NAT Gateway<br>
+                  Managed by AWS, highly available, bursts to 10Gbps, no port forward<br>
+                  For NAT Gateway HA, create in each AZ and point resources to it.<br>
+                  NAT Instance<br>
+                  Managed by you, you design HA, bandwidth based on instance type, can do port forwarding
+                  </div>
+                  <div class="col-2"></div>
+                </div>
 
 
 
 
+        <div class="row align-items-center">
+          <div class="col-2"></div>
+          <div class="col-2 content-left">
+              ELB - Elastic Load Balancer
+          </div>
+          <div class="col-6 content">
+            A regional specific object that accepts incoming traffic from clients and routes requests to its registered targets (EC2 instances) in one or more AZs.<br>
+            You select the AZs when configuring the ELB and AWS will deploy the service in each subnet selected.  You can only select one subnet within an AZ to have the ELB.<br>
+            The load balancer also monitors the health of its registered targets and ensures that it routes traffic only to healthy targets. When the load balancer detects an unhealthy target, it stops routing traffic to that target, and then resumes routing traffic to that target when it detects that the target is healthy again.<br>
+            Listener processes check for connection requests based on port and protocol (e.g. HTTP:80, or HTTP:8080)<br>
+            An ELB is referenced by its DNS name.  You should use an A Alias to map your own name to it.<br>
+            Within an ELB, an Elastic Network Interface (ENI) is created that points to an EC2 instance.  You configure the instances across AZ's and the ELB can effectively ensure High Availability of your instances.<br>
+            A Target Group is an instance resource pool; a  logical clustering of instances that serve the same purpose<br><br>
+            <img src="media/lb.png"><br><br>
+            Cross-zone LB: traffic is distrubuted across registered targets in ALL AZs, enabled by default on APL, disabled on NLB.  If disabled, each LB will only sent traffic to its own AZs.<br>
+            Security Group: The rules for the security groups associated with your load balancer security group must allow traffic in both directions on both the listener and the health check ports. Whenever you add a listener to a load balancer or update the health check port for a target group, you must review your security group rules to ensure that they allow traffic on the new port in both directions.<br>
+            Connection Draining: wait until sessions are completed before allowing an instance to de-register from a resouce pool
+            <br>Can be enabled through the console, API, CLI, or CloudFormation
+            <br><b>Features that distinguish ELB from Route53</b><br>
+            1. HA and scalability is automatically handled by AWS<br>
+            2. Can be configued along with Security Groups for tighter security<br>
+            3. Health Checks can be used to maintain status of instances, and traffic is only routed to healthy targets<br>
+            4. SSL Offloading: the LB will handle HTTP<-->HTTPS translation and encryption instead of the browser or the server><br>
+            5. Sticky Sessions: Using Cookies to control the user experience, or using TTL for duration based sessions <br>
+            6. Proxy Protocol: acts as a transparent proxy, so the user-data (source IP, etc..) can be sent to the instance<br>
+            7. Works over L4 or L7<br><br>
+            Limit: 20 ELBs per region, 5 SGs per ELB
+
+          </div>
+          <div class="col-2"></div>
+        </div>
+
+        <div class="row align-items-center">
+          <div class="col-2"></div>
+          <div class="col-2 content-left">
+              Load Balancer Types
+          </div>
+          <div class="col-6 content">
+            <b>Application Load Balancer</b><br>
+            Works at Application Layer, can read the URI in the Request (Layer 7), advanced load balancing of HTTP/S traffic and containers<br>
+            Benefits:<br>
+            Supports path-based routing (based on the URL of the request)<br>
+            Host-based routing (in the HTTP request header, to route traffic to multiple domains using a single ELB)<br>
+            Can route to multiple applications on a single instance (port based routing)<br>
+            Health checks are defined at Target Group level, so CloudWatch metrics are more refined, and you can use ASG to scale dynamically at service level<br>
+            Has verbose and compressed access logs<br><br>
+            <b>Network Load Balancer</b><br>
+            Makes decisions based on TCP/IP Layer (Layer 4)<br>
+            Benefits:<br>
+            Can handle millions of requests per second at extremely low latencies<br>
+            You can assign a static IP to the ELB<br>
+            You can register targets that are outside of the VPC<br>
+            Can also route to multiple applications on a single instance (port based routing)<br>
+            Same Health Check benefit as AppLB<br>
+            <b>Classic Load Balancer</b><br>
+    	      Legacy methodoly, also works on TCP/IP layer, can have poor performance, if so, you can ask AWS helpdesk to "Pre-Warm" the LB for you
+          </div>
+          <div class="col-2"></div>
+        </div>
+
+        <div class="row align-items-center">
+          <div class="col-2"></div>
+          <div class="col-2 content-left">
+              Load Balancer Metrics
+          </div>
+          <div class="col-6 content">
+            Sometimes you'll get an HTTP:503 Service Unavailable or HTTP:504 Gateway Timeout errors so you gotta refer to CloudWatch to make sure the ELB is processing requests.<br>
+            Check for the following CloudWatch metrics:<br>
+              1. SurgeQueueLength<br>
+              Surge queue length is defined by the number of requests that are queued by Elastic Load Balancing (ELB). These requests are queued when back-end systems are unable to process incoming requests as fast as the requests are being received<br>
+              2. SpilloverCount<br>
+              When the max SurgeQueueLength is exceeded, the sum statistic of the SpilloverCount metric begins to measure the total number of requests that were rejected due to the queue being full<br>
+            These errors happen if and when you have:<br>
+            1. Overloaded target instances that can't handles your requests due to CPU/Memory/Network limitations<br>
+            2. Application dependencies are not being met in time (external data sources outside of your instance or not responding in time)<br>
+            3. Max connections reached on the web servers and can't process new requests<br>
+            The solution is to always monitor you CloudWatch logs, refine your web server configs, use ASG to scale out, or scale up your instance type.
+          </div>
+          <div class="col-2"></div>
+        </div>
+
+        <div class="row align-items-center">
+          <div class="col-2"></div>
+          <div class="col-2 content-left">
+            EIP - Elastic IP Address
+          </div>
+          <div class="col-6 content">
+            A static IP address that is associated with your account<br>
+            You attach it to an instance in order to get a public IP address on the network interface, just make sure the instance is in a public subnet and has the correct RT rule<br>
+            Limit: 5 per region.  Only IPv4.
+          </div>
+          <div class="col-2"></div>
+        </div>
+
+        <div class="row align-items-center">
+          <div class="col-2"></div>
+          <div class="col-2 content-left">
+            Route 53
+          </div>
+          <div class="col-6 content">
+          Global Object, Tier 0 service<br>
+          Highly Available and Fault Tolerant service<br>
+          Can route traffic between regions based on DNS.<br>
+          Fast: worldwide anycast, fast propagation of changes<br>
+          Reliable: redundant service, 100% SLA<br><br>
+
+          Can achieve load balancing of traffic based on: <br>
+          1. Simple: standard DNS declarations,  <br>
+          2. Weighted Round Robin: assign weights to resource records   <br>
+          3. Geo-Location: resources served from closest region <br>
+          4. Geoproximity: route traffic based on physical distance to users <br>
+          5. Latency: resources served from quickets region <br>
+          6. Health Check and Failover capability <br>
+          7. Multivalue answers: gives more than one IP to the client to try <br> <br>
+
+          A Record Alias: is a CNAME feature by AWS (URL to URL mapping)  <br>
+
+          ELB, S3, RDS are all assigned DNS endpoints <br>
+          Best practice to use A Alias to map them to your own naming convention
+          </div>
+          <div class="col-2"></div>
+        </div>
+
+        <div class="row align-items-center">
+          <div class="col-2"></div>
+          <div class="col-2 content-left">
+            Security
+          </div>
+          <div class="col-6 content">
+            Security is maintained by Security Groups and NACL (Network Access Control List)<br>
+            Stateless: have to explicitly define inbound and outbound rules within a policy<br>
+            Stateful: maintains inbound and outbound session mapping
+          </div>
+          <div class="col-2"></div>
+        </div>
+
+                <div class="row align-items-center">
+                  <div class="col-2"></div>
+                  <div class="col-2 content-left">
+                    Security Group
+                  </div>
+                  <div class="col-6 content">
+                    At VPC level, stateful virtual firewall that control inbound and outbound traffic of associated instances <br>
+                    Implicit deny all, <br>
+                    Filters based on TCP, UDP, and ICMP protocols<br>
+                    Source/Target can be CIDR or other SGs<br>
+                    By default, all new SGs allow all OUTBOUND traffic to all dests<br>
+                    Best practice: create INBOUND rules per tier (web/app/data)<br>
+                    <img src="media/sg.png">
+                  </div>
+                  <div class="col-2"></div>
+                </div>
+
+                <div class="row align-items-center">
+                  <div class="col-2"></div>
+                  <div class="col-2 content-left">
+                    NACL - Network Access Control List
+                  </div>
+                  <div class="col-6 content">
+                    At subnet level, stateless, by default is ALLOW ALL so should have explicit deny statements <br>
+                  </div>
+                  <div class="col-2"></div>
+                </div>
+
+          <div class="row align-items-center">
+            <div class="col-2"></div>
+            <div class="col-2 content-left">
+              CloudFront
+            </div>
+            <div class="col-6 content">
+              A CDN service to deliver access to high bandwidth content from sources closer to the user and thereby saves on bandwidth to the origin servers.<br>
+
+              Akamai call Edge Servers as ‘Surrogates’<br>
+              Inherently protects against DDoS (for app stress testing you need special approvals from AWS support team)<br>
+
+              Typically, CloudFront serves an object from an edge location until the cache duration that you specified passes—that is, until the object expires. After it expires, the next time the edge location gets a user request for the object, CloudFront forwards the request to the origin server to verify that the cache contains the latest version of the object. <br>
+              The response from the origin depends on whether the object has changed: <br>
+              If the CloudFront cache already has the latest version, the origin returns a 304 status code (Not Modified). <br>
+              If the CloudFront cache does not have the latest version, the origin returns a 200 status code (OK) and the latest version of the object. <br>
+              <br>If an object in an edge location isn't frequently requested, CloudFront might evict the object—remove the object before its expiration date—to make room for objects that have been requested more recently.
+            <br>  By default, each object automatically expires after 24 hours. For web distributions, you can change the default behavior in two ways:
+            <br>  -TTL of all objects at the same time
+            <br>  -TTL of objects individually
+            </div>
+            <div class="col-2"></div>
+          </div>
+
+                    <div class="row align-items-center">
+                      <div class="col-2"></div>
+                      <div class="col-2 content-left">
+                        Other Details on Networking and Content Delivery
+                      </div>
+                      <div class="col-6 content">
+                        DDoS Mitigation using Edge Locations, WAF, and ELB <br><br>
+                        Each VPC has one and only one Internet Gateway<br>
+                        Subnets are associated with one Route Table only<br><br>
+                        VPC now supports dual-stack of IPv4 and IPv6<br><br>
+                        Stateful Rules: if you initiate an ICMP ping from your home computer to your instance, and your INBOUND SG allows ICMP, response traffic is tracked as an established connection and is allowed even if you have an explicit deny on OUTBOUND ICMP. <br>
+                      <br>  If you don't want users to access content on S3 using S3 URLs, and instead only use CloudFront, then create an Origin Access Identity (OIA) and grant access from S3 to the OIA only.  Protects you when you want to use signed URLs to check who can access the content (e.g. paid content) <br>
+                      </div>
+                      <div class="col-2"></div>
+                    </div>
 
 
-    <!--End of Compute Section, start of Storage Section -->
+        <br>
+        <br>
+        <br>
+        <br>
 
 
+    <!-- End of Network and Content Delivery Section-->
+
+    <!-- Start of Storage Section -->
 
 
     <div class="row align-items-center row-border">
