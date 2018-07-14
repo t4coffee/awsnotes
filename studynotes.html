@@ -32,6 +32,24 @@
           <li class="nav-item">
             <a class="nav-link" href="#storage">Storage</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#dbs">Databases</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#flw">Workflow</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#lyt">Analytics</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#iam">Access</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#mng">Management</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#bst">Best Practices</a>
+          </li>
         </ul>
         <form class="form-inline mt-2 mt-md-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
@@ -45,6 +63,7 @@
     <h2>Solution Architect Associate </h2>
     <h3>Exam Study Notes</h3>
     </div>
+
 <div class="container-fluid">
   <div class="row first-row-border" >
     <div class="col-2"></div>
@@ -155,7 +174,7 @@
           1. Physical security of DCs<br>
           2. Hardware infrastructure: servers and storage (including decommissioning storage disks)<br>
           3. Software infrastructure: host OS, service apps, virtualization isolation<br>
-          4. Network infrastructure: routers, switches, LBs, FWs, network monitoring at external boundaries, intrusion detection<br>
+          4. Network infrastructure: routers, switches, LBs, FWs, network monitoring at external boundaries, intrusion detection<br><br>
         You are responsible for<br>
           1. Instance OS including patching and maintenance<br>
           2. Application security and access<br>
@@ -175,11 +194,11 @@
       High Availability (HA) and Fault Tolerance (FT)
     </div>
     <div class="col-6 content">
-      "Always design your AWS environment for failure" - Anonymous<br>
+      "Always design your AWS environment for failure" - Anonymous<br><br>
       HA: always serves purpose despite component failure<br>
       FT: still operates at stable capacity and without any performance degredation<br>
       HA and FT: DynamoDB and Route53<br>
-      HA only: EC2 and S3<br>
+      HA only: EC2 and S3<br><br>
       Example: Your app needs 6 instances for stable performance, how do you achieve HA and FT?<br>
       Answer: run 6 instances in each of at least two different AZ's
     </div>
@@ -227,6 +246,9 @@
       Developer: business hours access to Cloud Support Associates via email, and access to 7 core Trusted Advisor health checks<br>
       Business: 24x7 access to Cloud Support Engineers via email/chat/phone, and access to the full set of Trusted Advisor health checks<br>
       Enterprise: 24x7 access to Sr. Cloud Support Engineers via email/chat/phone, and access to the full set of Trusted Advisor health checks<br>
+      <br>
+      Trusted Advisor:<br>
+      Security Checks: S3 Bucket Permissions, Security Groups - Specific Ports Unrestricted, IAM Use, MFA on Root Account, EBS Public Snapshots, RDS Public Snapshots
     </div>
     <div class="col-2"></div>
   </div>
@@ -242,6 +264,31 @@
       Reports: detailed data to better analyze where the costs are per AWS service<br>
       Cost Allocation Tags: has to be activated, is associated with AWS service and can be tracked throughout the billing pipeline<br>
       <a href=http://calculator.s3.amazonaws.com/index.html>Simple Monthly Calculator</a>
+    </div>
+    <div class="col-2"></div>
+  </div>
+
+  <div class="row align-items-center">
+    <div class="col-2"></div>
+    <div class="col-2 content-left">
+      The Well-Architected Framework
+    </div>
+    <div class="col-6 content">
+      <b>1. Operational Excellence</b><br>
+      The operational excellence pillar focuses on running and monitoring systems to deliver business value, and continually improving processes and procedures. <br>
+      Key topics include managing and automating changes, responding to events, and defining standards to successfully manage daily operations.<br><br>
+      <b>2. Security</b><br>
+      The security pillar focuses on protecting information and systems.  <br>
+      Key topics include confidentiality and integrity of data, identifying and managing who can do what with privilege management, protecting systems, and establishing controls to detect security events.<br><br>
+      <b>3. Reliability</b><br>
+      The reliability pillar focuses on the ability to prevent, and quickly recover from failures to meet business and customer demand.  <br>
+      Key topics include foundational elements around setup, cross project requirements, recovery planning, and how we handle change.<br><br>
+      <b>4. Performance Efficiency</b><br>
+      The performance efficiency pillar focuses on using IT and computing resources efficiently. <br>
+      Key topics include selecting the right resource types and sizes based on workload requirements, monitoring performance, and making informed decisions to maintain efficiency as business needs evolve.<br><br>
+      <b>5. Cost Optimization</b><br>
+      Cost Optimization focuses on avoiding un-needed costs.  <br>
+      Key topics include understanding and controlling where money is being spent, selecting the most appropriate and right number of resource types, analyzing spend over time, and scaling to meet business needs without overspending.<br><br>
     </div>
     <div class="col-2"></div>
   </div>
@@ -271,7 +318,7 @@
         EC2 - Elastic Cloud Compute
       </div>
       <div class="col-6 content">
-        Virtual computing environment (instances) that you can launch and manage from a GUI or from CLI code<br>
+        Virtual computing environment (instances) that you can launch and manage from a GUI or from CLI code, runs on the XEN hypervisor<br>
         Supports most OS (Windows, RedHat, SUSE, Ubuntu, Amazon Linux)<br>
         Instances are scalable and optimizable<br>
         Consider the following before you create: core count, memory size, storage size and type, network performance, and CPU architecture<br><br>
@@ -281,7 +328,20 @@
         2. Spot instances: bidding on instances based on supply/demand, pay the price per instance-hour set at the start of each instance-hour for the entire hour (spot price).  Gives 2 minute prior notification before stopping an instance for someone with a higher bid.  Good for large scale, dynamic workloads.<br>
         3. Reserved instances: full upfront, partial upfront, and no upfront payment options for 1 and 3 	year contract durations.  Good to predict costs and know available capacity needed.<br>
         4. Dedicated Host: you rent the underlying hardware, single-tenancy model, pay hourly, can be upto 75% cheaper than on-demand.  You can control licensing. Good for compliance and regulatory requirements.<br><br>
+<br>
+        You can launch or start instances in a placement group, which determines how instances are placed on underlying hardware.<br>
+        <b>Cluster</b><br>
+        -Clusters instances into a low-latency group in a single Availability Zone<br>
+        -Cluster placement groups are recommended for applications that benefit from low network latency, high network throughput, or both, and if the majority of the network traffic is between the instances in the group. <br>
+        -To provide the lowest latency and the highest packet-per-second network performance for your placement group, choose an instance type that supports enhanced networking<br>
+        <b>Spread</b><br>
+        -Spreads instances across underlying hardware<br>
+        -Spread placement groups are recommended for applications that have a small number of critical instances that should be kept separate from each other. <br>
+        -Launching instances in a spread placement group reduces the risk of simultaneous failures that might occur when instances share the same underlying hardware. <br>
+        -Spread placement groups provide access to distinct hardware, and are therefore suitable for mixing instance types or launching instances over time.<br>
+        -A spread placement group can span multiple Availability Zones, and you can have a maximum of seven running instances per Availability Zone per group. <br>
 
+<br>
         Per Second Billing: minimum increment is 60 seconds, so even if you run for 10 seconds, you will be charged for 60<br>
         Available for On-Demand, Reserved, Spot instances, all regions and AZs, only on Amazon Linux and Ubuntu.  Everything else is per-hour.<br><br>
       </div>
@@ -297,7 +357,8 @@
         Regional specific object with an AMI-ID that is unique within that region<br>
         An image snapshot of your EC2 instance OS and application configuration<br>
         Selection is made from your own customized instance or AWS marketplace or AWS community<br>
-        To replicate, copy snapshot to S3, move regions, create AMI from snapshot (gives different ID)
+        To replicate, copy snapshot to S3, move regions, create AMI from snapshot (gives different ID)<br>
+        AWS does not copy launch permissions, user-defined tags, or Amazon S3 bucket permissions from the source AMI to the new AMI. After the copy operation is complete, you can apply launch permissions, user-defined tags, and Amazon S3 bucket permissions to the new AMI.
         </div>
       <div class="col-2"></div>
     </div>
@@ -359,15 +420,20 @@
         Auto-Scaling
       </div>
       <div class="col-6 content">
-      Launches or terminates instances based on specific conditions<br>
+      Launches or terminates instances based on specific conditions (scheduled scaling - time based, or dynamic scaling - based on CloudWatch metrics)<br>
       Automatically registers new instances with LBs <br>
       Can launch across AZs<br><br>
 
+      Scaling Types:<br>
+      1. Manual scaling: where the admin adjusts the ASG size<br>
+      2. Scheduled scaling: a time based approach<br>
+      3. Dynamic scaling: simple scaling (with cooldown periods) or step scaling (with instance warmup time). <br><br>
       Set policy for AutoScalingGroup where instances are created and destroyed based on parameters such as: <br>
       Desired count of instances, Minimum and Maximum instance count<br>
       One LC corresponds to One ASG.<br>
       Correct setup of AutoScalingGroup and LC can protect you from DDoS and high fees ($)	<br>
       Instance are configured in Launch Configuration (LC) or by custom AMI<br>
+      Instances with the oldest LC are terminated first <br>
 
       Console Status Checks are used to make Auto-Scaling decisions (can be accessed via CloudWatch).  <br>
       CloudWatch alarms have Auto-Scaling controls built in and can be customized per use case<br>
@@ -378,6 +444,8 @@
       <br>3. From LB based on new sessions, switch over ASG's
       Make sure to change the ASG "Health Check Type" from "EC2" to "ELB"<br><br>
 
+      Cooldown Period: the time to wait after a scaling request is initiated before another is started; used to allow the new instance to launch with all the necessary software and be added to the ASG before going back and checking the CloudWatch alarms.<br>
+      Default is 300 seconds (5 minutes)<br><br>
       Limit: 200 ASGs and 200 LCs per region
       </div>
       <div class="col-2"></div>
@@ -409,7 +477,7 @@
         #curl http://169.254.169.254/latest/meta-data/<br>
         Can find all details about your instance via running the curl or wget command within the instance CLI<br>
         2-min spot notification is sent here, so you have to constantly poll the directory<br>
-        Here you can also find the Public IP of your instance (instead of going through the console)
+        Here you can also find the Public IP of your instance (instead of going through the console) via http://169.254.169.254/latest/meta-data/public-ipv4
       </div>
       <div class="col-2"></div>
     </div>
@@ -466,15 +534,43 @@
             A comprehensive set of virtual networking capabilities that allow customers to provision logically isolated virtual network to host AWS resources.  <br>
             You can create multiple VPCs within the same region and you can include resources in more than one AZ withing a single VPC<br>
             You can connect VPCs in different regions to each other without going through the Public Internet<br>
-
+            Instances within a VPC will all have private IP addresses<br>
+            You can only attach ONE internet gateway to your VPC<br>
+<br>
             Within a VPC there are multiple subnets that technically map to the AZ'swithin the region.   <br>
+            A subnet cannot span multiple AZs, each subnet is unique within its own AZ <br>
             For example, the North Virginia region has 6 AZ's and a default VPC with 6 subnets.  You can create new subnets and assign them to be public or private.  The default subnet inside a VPC is publicly accessible.<br><br>
+  <br>
+            <b>Subnets</b><br>
+            When you create a subnet, you assign a CIDR block, AWS reserves both the first four and the last IPv4 address in each subnet's CIDR block. They're not available for use. <br>
+            The smallest subnet you can create is a /28, and the largest is a /16<br>
+            The public IP address for your instance is released when it's stopped or terminated. The stopped instance receives a new public IP address when it's restarted.   <br>
+            These Public IP's are NAT'd, for persistent public IP, use EIP<br>
+
+<br>
             You configure the following within a VPC:<br>
             1. IP Subnets<br>
             2. Routing tables <br>
             3. Gateways<br>
             4. Security settings<br>
+            <br>
+            When creating a custom VPC, the following is created automatically:<br>
+            1. Route Table<br>
+            2. Security Group <br>
+            3. Access Control List (ACL)<br>
+            <br>
             <img src="media/vpc.png">
+            <br><br>
+            <b> VPC Endpoints </b><br>
+            A VPC endpoint enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by PrivateLink without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection. <br>
+            Instances in your VPC do not require public IP addresses to communicate with resources in the service. Traffic between your VPC and the other service does not leave the Amazon network.
+            <br><br>
+            <b> VPC Flow Logs </b><br>
+            A a feature that enables you to capture information about the IP traffic going to and from network interfaces in your VPC. <br>
+            Flow log data is stored using Amazon CloudWatch Logs. After you've created a flow log, you can view and retrieve its data in Amazon CloudWatch Logs. <br>
+            You can create upto 2 flow logs for a VPC, a subnet, or a network interface. <br>
+            <br>
+            Limit: 5 VPC per region.
           </div>
           <div class="col-2"></div>
         </div>
@@ -485,7 +581,7 @@
             VPC Peering
           </div>
           <div class="col-6 content">
-            A one-to-one relationship between two VPCs, without any transitive connections.  Can be inter and intra region.  <br>
+            A one-to-one relationship between two VPCs, without any transitive connections.  Can be inter or intra region, and can be within the same account or to another account.  <br>
             Can't have overlapping subnets<br>
             Once established, traffic will flow between peer VPCs using private IP addresses<br>
             Keep RT and SGs in check.<br>
@@ -505,7 +601,7 @@
                     Each subnet in your VPC must be associated with a route table; the table controls the routing for the subnet. A subnet can only be associated with one route table at a time, but you can associate multiple subnets with the same route table. <br>
                     You cannot delete the main route table, but you can replace the main route table with a custom table that you've created.<br>
                     Every route table contains a local route for communication within the VPC <br>
-
+                    By default, new subnets in a custom VPC can communicate with each other across Availability Zones.
                   </div>
                   <div class="col-2"></div>
                 </div>
@@ -519,9 +615,11 @@
                   <img src="media/nat2.png"><br>
                   NAT Gateway<br>
                   Managed by AWS, highly available, bursts to 10Gbps, no port forward<br>
-                  For NAT Gateway HA, create in each AZ and point resources to it.<br>
+                  For NAT Gateway HA, create in each AZ and point resources to it.<br><br>
                   NAT Instance<br>
-                  Managed by you, you design HA, bandwidth based on instance type, can do port forwarding
+                  Managed by you, you design HA, bandwidth based on instance type, can do port forwarding<br>
+                  Source/Destination Check - by default, EC2 instances check that their own IP is the source and destination for all traffic sent and received.  <br>
+                  This has to be disabled if the instance is going to perform a NAT service.
                   </div>
                   <div class="col-2"></div>
                 </div>
@@ -537,16 +635,24 @@
           <div class="col-6 content">
             A regional specific object that accepts incoming traffic from clients and routes requests to its registered targets (EC2 instances) in one or more AZs.<br>
             You select the AZs when configuring the ELB and AWS will deploy the service in each subnet selected.  You can only select one subnet within an AZ to have the ELB.<br>
-            The load balancer also monitors the health of its registered targets and ensures that it routes traffic only to healthy targets. When the load balancer detects an unhealthy target, it stops routing traffic to that target, and then resumes routing traffic to that target when it detects that the target is healthy again.<br>
+            The load balancer also monitors the health of its registered targets and ensures that it routes traffic only to healthy targets. <br>
+            When the load balancer detects an unhealthy target, it stops routing traffic to that target, and then resumes routing traffic to that target when it detects that the target is healthy again.<br>
             Listener processes check for connection requests based on port and protocol (e.g. HTTP:80, or HTTP:8080)<br>
+<br>
             An ELB is referenced by its DNS name.  You should use an A Alias to map your own name to it.<br>
+<br>
             Within an ELB, an Elastic Network Interface (ENI) is created that points to an EC2 instance.  You configure the instances across AZ's and the ELB can effectively ensure High Availability of your instances.<br>
+            <br>
             A Target Group is an instance resource pool; a  logical clustering of instances that serve the same purpose<br><br>
             <img src="media/lb.png"><br><br>
             Cross-zone LB: traffic is distrubuted across registered targets in ALL AZs, enabled by default on APL, disabled on NLB.  If disabled, each LB will only sent traffic to its own AZs.<br>
-            Security Group: The rules for the security groups associated with your load balancer security group must allow traffic in both directions on both the listener and the health check ports. Whenever you add a listener to a load balancer or update the health check port for a target group, you must review your security group rules to ensure that they allow traffic on the new port in both directions.<br>
+            <br>
+            Security Group: The rules for the security groups associated with your load balancer security group must allow traffic in both directions on both the listener and the health check ports. <br>
+            Whenever you add a listener to a load balancer or update the health check port for a target group, you must review your security group rules to ensure that they allow traffic on the new port in both directions.<br>
+  <br>
             Connection Draining: wait until sessions are completed before allowing an instance to de-register from a resouce pool
             <br>Can be enabled through the console, API, CLI, or CloudFormation
+<br>
             <br><b>Features that distinguish ELB from Route53</b><br>
             1. HA and scalability is automatically handled by AWS<br>
             2. Can be configued along with Security Groups for tighter security<br>
@@ -556,7 +662,6 @@
             6. Proxy Protocol: acts as a transparent proxy, so the user-data (source IP, etc..) can be sent to the instance<br>
             7. Works over L4 or L7<br><br>
             Limit: 20 ELBs per region, 5 SGs per ELB
-
           </div>
           <div class="col-2"></div>
         </div>
@@ -569,6 +674,7 @@
           <div class="col-6 content">
             <b>Application Load Balancer</b><br>
             Works at Application Layer, can read the URI in the Request (Layer 7), advanced load balancing of HTTP/S traffic and containers<br>
+            Must be deployed in at-least two subnets<br>
             Benefits:<br>
             Supports path-based routing (based on the URL of the request)<br>
             Host-based routing (in the HTTP request header, to route traffic to multiple domains using a single ELB)<br>
@@ -598,9 +704,11 @@
             Sometimes you'll get an HTTP:503 Service Unavailable or HTTP:504 Gateway Timeout errors so you gotta refer to CloudWatch to make sure the ELB is processing requests.<br>
             Check for the following CloudWatch metrics:<br>
               1. SurgeQueueLength<br>
-              Surge queue length is defined by the number of requests that are queued by Elastic Load Balancing (ELB). These requests are queued when back-end systems are unable to process incoming requests as fast as the requests are being received<br>
+              Surge queue length is defined by the number of requests that are queued by Elastic Load Balancing (ELB). <br>
+              These requests are queued when back-end systems are unable to process incoming requests as fast as the requests are being received<br>
               2. SpilloverCount<br>
               When the max SurgeQueueLength is exceeded, the sum statistic of the SpilloverCount metric begins to measure the total number of requests that were rejected due to the queue being full<br>
+              <br>
             These errors happen if and when you have:<br>
             1. Overloaded target instances that can't handles your requests due to CPU/Memory/Network limitations<br>
             2. Application dependencies are not being met in time (external data sources outside of your instance or not responding in time)<br>
@@ -644,10 +752,11 @@
           6. Health Check and Failover capability <br>
           7. Multivalue answers: gives more than one IP to the client to try <br> <br>
 
-          A Record Alias: is a CNAME feature by AWS (URL to URL mapping)  <br>
-
+          A Record Alias: is a CNAME feature by AWS (URL to URL mapping), not visible to external resolvers, specific only to Route53.  Can be used for ELB, Elastic Beanstalk, and CloudFront.  <br>
+<br>
           ELB, S3, RDS are all assigned DNS endpoints <br>
-          Best practice to use A Alias to map them to your own naming convention
+          Best practice to use A Alias to map them to your own naming convention<br><br>
+          Limit: 50 domains names per account, can be increased after contacting support
           </div>
           <div class="col-2"></div>
         </div>
@@ -672,10 +781,10 @@
                   </div>
                   <div class="col-6 content">
                     At VPC level, stateful virtual firewall that control inbound and outbound traffic of associated instances <br>
-                    Implicit deny all, <br>
+                    Implicit DENY all for INBOUND traffic, ALLOW all OUTBOUND traffic by default <br>
+                    They evaluate all rules before deciding whether to allow traffic<br>
                     Filters based on TCP, UDP, and ICMP protocols<br>
                     Source/Target can be CIDR or other SGs<br>
-                    By default, all new SGs allow all OUTBOUND traffic to all dests<br>
                     Best practice: create INBOUND rules per tier (web/app/data)<br>
                     <img src="media/sg.png">
                   </div>
@@ -703,8 +812,10 @@
 
               Akamai call Edge Servers as ‘Surrogates’<br>
               Inherently protects against DDoS (for app stress testing you need special approvals from AWS support team)<br>
-
-              Typically, CloudFront serves an object from an edge location until the cache duration that you specified passes—that is, until the object expires. After it expires, the next time the edge location gets a user request for the object, CloudFront forwards the request to the origin server to verify that the cache contains the latest version of the object. <br>
+<br>
+              Typically, CloudFront serves an object from an edge location until the cache duration that you specified passes—that is, until the object expires. <br>
+              After it expires, the next time the edge location gets a user request for the object, CloudFront forwards the request to the origin server to verify that the cache contains the latest version of the object. <br>
+<br>
               The response from the origin depends on whether the object has changed: <br>
               If the CloudFront cache already has the latest version, the origin returns a 304 status code (Not Modified). <br>
               If the CloudFront cache does not have the latest version, the origin returns a 200 status code (OK) and the latest version of the object. <br>
@@ -716,34 +827,31 @@
             <div class="col-2"></div>
           </div>
 
-                    <div class="row align-items-center">
-                      <div class="col-2"></div>
-                      <div class="col-2 content-left">
-                        Other Details on Networking and Content Delivery
-                      </div>
-                      <div class="col-6 content">
-                        DDoS Mitigation using Edge Locations, WAF, and ELB <br><br>
-                        Each VPC has one and only one Internet Gateway<br>
-                        Subnets are associated with one Route Table only<br><br>
-                        VPC now supports dual-stack of IPv4 and IPv6<br><br>
-                        Stateful Rules: if you initiate an ICMP ping from your home computer to your instance, and your INBOUND SG allows ICMP, response traffic is tracked as an established connection and is allowed even if you have an explicit deny on OUTBOUND ICMP. <br>
-                      <br>  If you don't want users to access content on S3 using S3 URLs, and instead only use CloudFront, then create an Origin Access Identity (OIA) and grant access from S3 to the OIA only.  Protects you when you want to use signed URLs to check who can access the content (e.g. paid content) <br>
-                      </div>
-                      <div class="col-2"></div>
-                    </div>
-
-
+          <div class="row align-items-center">
+            <div class="col-2"></div>
+            <div class="col-2 content-left">
+              Other Details on Networking and Content Delivery
+            </div>
+            <div class="col-6 content">
+              DDoS Mitigation is implemented using Edge Locations, WAF, and ELB <br><br>
+              Each VPC has one and only one Internet Gateway<br>
+              Subnets are associated with one Route Table only<br><br>
+              VPC now supports dual-stack of IPv4 and IPv6<br><br>
+              Stateful Rules: if you initiate an ICMP ping from your home computer to your instance, and your INBOUND SG allows ICMP, response traffic is tracked as an established connection and is allowed even if you have an explicit deny on OUTBOUND ICMP. <br>
+            <br>  If you don't want users to access content on S3 using S3 URLs, and instead only use CloudFront, then create an Origin Access Identity (OIA) and grant access from S3 to the OIA only.  <br>
+            Protects you when you want to use signed URLs to check who can access the content (e.g. paid content)
+            <br>
+            Bastion Hosts: allows you to securely administer (via SSH or RDP) an EC2 instance located in a private subnet.
+            </div>
+            <div class="col-2"></div>
+          </div>
         <br>
         <br>
         <br>
         <br>
-
-
     <!-- End of Network and Content Delivery Section-->
 
     <!-- Start of Storage Section -->
-
-
     <div class="row align-items-center row-border">
       <div class="col-2"></div>
       <div class="col-2 section-img">
@@ -753,29 +861,1182 @@
         <h4 id="storage">Storage</h4>
       </div>
       <div class="col-2"></div>
-
     </div>
 
     <div class="row align-items-center">
       <div class="col-2"></div>
-
       <div class="col-2 content-left">
-        Simple Storage Service (S3)
+        EBS - Elastic Block Storage
       </div>
       <div class="col-6 content">
-        <li>Standard:	99.999999999% durability, 99.99% availability</li>
-	      <li>Infrequent Access: 99.999999999% durability, 99.99% availability</li>
-        <li>Reduced Redundancy: 99.99% durability, 99.99% availability, for data that can be reproduced</li>
-	      <li>Glacier: 99.999999999% durability, 99.99% availability, for archiving, takes 3-5 hours to retrieve data</li>
+        AZ level object <br>
+        Directly attached to one EC2 instance at a time and offers low latency between instance and volume<br>
+        Compared to instance storage which resides directly on the EC2 and is ephemeral (gets deleted when instance shutsdown/reboots)<br>
+        Supports a Root Volume (location of the OS)<br>
+        Capacity of volume has to be provisioned upon instance creation<br>
+        Data is automatically replicated across multiple DC's within the same AZ and can be backed up to S3<br>
+
+        <b>Use Cases:</b><br>
+        Boot volumes and storage for EC2<br>
+        Data storage of a file system<br>
+        Database hosts<br>
+        Enterprise applications<br>
+
+        <img src="media/block.png"><br><br>
+        <b>EBS types:</b> <br>
+        1. General Purpose (gp2) - SSD<br>
+        For boot volumes, VDI, dev/test, low-latency interactive apps<br>
+        Gp2 volumes support up to 10,000 IOPS and 160 MB/s of throughput<br>
+        2. Provisioned IOPS (io1) - SSD<br>
+        For I/O intensive workloads, RDS, NoSQL<br>
+        Io1 volumes support up to 32,000 IOPS and 500 MB/s of throughput<br>
+        3. Throughput Optimized (st1) - HDD<br>
+        Streaming services, big data, data warehouse, log processing, cannot be a boot volume<br>
+        4. Cold (sc1) - HDD<br>
+        Throughput intensive storage for large volumes of infrequent access, cannot be boot volume<br>
+        5. Magnetic disk (standard) <br>
+        <br>
+        Snapshots<br>
+        You can back up the data on your Amazon EBS volumes to Amazon S3 by taking point-in-time snapshots. <br>
+        Snapshots are incremental backups, which means that only the blocks on the device that have changed after your most recent snapshot are saved. This minimizes the time required to create the snapshot and saves on storage costs by not duplicating data. <br>
+        When you delete a snapshot, only the data unique to that snapshot is removed.<br>
+        Each snapshot contains all of the information needed to restore your data (from the moment when the snapshot was taken) to a new EBS volume. <br>
+        <br>Incremental snapshot<br>
+        <img src="media/ebsincrem.png"><br><br>
+        EBS snapshots broadly support EBS encryption.<br>
+        Snapshots of encrypted volumes are automatically encrypted.<br>
+        Volumes that are created from encrypted snapshots are automatically encrypted.<br>
+        When you copy an unencrypted snapshot that you own, you can encrypt it during the copy process.<br>
+        When you copy an encrypted snapshot that you own, you can reencrypt it with a different key during the copy process.<br><br>
+        Limit: 5000 EBS volumes, 10,000 snapshots, 200K IOPS, 100TB storage on gp2
       </div>
       <div class="col-2"></div>
-
     </div>
+
+    <div class="row align-items-center">
+      <div class="col-2"></div>
+      <div class="col-2 content-left">
+        S3 - Simple Storage Service
+      </div>
+      <div class="col-6 content">
+        Managed Object storage service using Buckets  <br>
+        Bucket names are uniquely identified <br>
+        S3 is its own service, cannot be defined within a VPC <br>
+ <br>
+        Soft limit of 150 buckets, to increase contact AWS support <br>
+        Max object size is 5TB <br>
+        Max upload size is 5GB, for bigger objects, use multi-part upload tool <br>
+        Multi-Part upload also runs faster because of parallel upload threads <br>
+        HA service that replicates data in 3 facilities <br>
+ <br>
+        READ after WRITE Consistency for a PUT of a new object <br>
+        EVENTUAL Consistency for a MODIFIED PUT or DELETE <br>
+ <br>
+        Event Notifications: set up to notify when new upload or delete. Sent via SNS or to Lambda. <br>
+        <br>
+        <b>Storage Classes:</b><br>
+        1. Standard: 99.999999999% durability, 99.99% availability <br>
+        High availability requirements should use cross-region replication <br>
+        2. Infrequent Access: 99.999999999% durability, 99.99% availability <br>
+        Lower cost per GB, higher cost per PUT/COPY/POST/GET reqs <br>
+        30-day storage minimum <br>
+        3. Reduced Redundancy: 99.99% durability, 99.99% availability.  For non-critical data that can be reproduced <br>
+        4/ Glacier: 99.999999999% durability, 99.99% availability.  <br>
+ <br>
+        Path URL http://s3-aws-region.amazonaws.com/bucket or http://s3.amazonaws.com/bucket <br>
+        Virtual Host URL http://bucket.s3-aws-region.amazonaws.com  or http://bucket.s3.amazonaws.com<br>
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-2"></div>
+      <div class="col-2 content-left">
+        EFS - Elastic File System
+      </div>
+      <div class="col-6 content">
+        Managed file share service at AZ level <br>
+        Can be shared across multiple EC2 instances like a file share at Petabyte scale <br>
+        Offers strong consistency and file locking features of an NFS<br>
+        Not suitable for installing OS<br>
+        More expensive than EBS<br>
+        Does not require any provisioning, scales elastically<br>
+        Can be accessible by multiple instances at the same time, offers consistent performance<br>
+<br>
+        Mount Target: to access your file system in a VPC<br>
+        -target ID<br>
+        -subnet ID<br>
+        -file system ID<br>
+        -IP address<br>
+        -target state <br>
+<br>
+        Tags: help to organize your file systems (meta-data), key-value pair<br>
+<br>
+        Creation Steps<br>
+        1. Create EC2 instance<br>
+        2. Create EFS<br>
+        3. Create mount target in the correct subnet<br>
+        4. Connect instance to mount target<br>
+        5. Clean up and protect account<br>
+        <img src="media/efsmnt.png">
+
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-2"></div>
+      <div class="col-2 content-left">
+        Glacier
+      </div>
+      <div class="col-6 content">
+        Data archiving service designed for security, durability and extremely low cost<br>
+        Supports SSL/TLS encryption of data in-transit<br>
+        Has a Vault Lock feature for compliance<br>
+        Ideal for long-term archives<br>
+        Three options for access<br>
+        1. Expedited retrieval within 1-5 minutes<br>
+        2. Standard retrieval within 3-5 hours<br>
+        3. Bulk retrievals within 5-12 hours<br>
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+
+    <div class="row align-items-center">
+      <div class="col-2"></div>
+      <div class="col-2 content-left">
+        Storage Life Cycle
+      </div>
+      <div class="col-6 content">
+        Set actions for data to be automatically moved between S3 offerings (Standard → Infrequent → Glacier after 6 months)<br>
+        Can be applied to current and previous versions of the files within a bucket<br>
+        <br>
+        <img src="media/slc.png">
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-2"></div>
+      <div class="col-2 content-left">
+          Billing
+      </div>
+      <div class="col-6 content">
+        Pay for: <br>
+        1. Storage space (GB per month) <br>
+        2. Throughput of requests (transfers OUT of region)<br>
+        3. PUT/COPY/POST/LIST/GET requests <br><br>
+        Don't pay for:<br>
+        1. Transfer IN to S3<br>
+        2. Transfer from S3 to CloudFront<br>
+        3. Transfers within region<br>
+<br>
+        Keep in mind that it is a cost benefit analysis when designing the system, so identify items per storage class
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-2"></div>
+      <div class="col-2 content-left">
+          Versioning
+      </div>
+      <div class="col-6 content">
+        Can define file versions<br>
+        Can define Multi Factor Authentication (MFA) before DELETE<br>
+        Can define Cross Region Replication (one step replication only, can't daisy chain region to region to region,  you have to explicitly upload to one region first, then replication happens once)<br>
+        Versioning needs to be enabled first before MFA DELETE or CRR
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-2"></div>
+      <div class="col-2 content-left">
+          Security
+      </div>
+      <div class="col-6 content">
+        Buckets are inherently PRIVATE, to access you need to define an ACL in the Bucket Policy<br>
+        Can enable logging to see which user did what (CloudTrail)<br>
+        Can't install an application or an OS, doesn't do any data integrity check after uploads (i.e. no md5 checksum), does not check for viruses either<br><br>
+        To protect data in transit while uploading:<br>
+        1. Use HTTP/SSL/TLS<br>
+        2. Use a VPN between On-Prem and VPC, then use a VPC Endpoint<br>
+        (VPC Endpoints use the AWS Backbone to transfer data between a VPC and S3)<br><br>
+
+        Data at Rest on S3 can be protected using:<br>
+        1. Server-Side Encryption<br>
+        2. Client-Side Encryption<br>
+<br>
+        You can achieve Server Side Encryption (SSE)<br>
+        1. SSE-S3<br>
+        2. SSE-KMS<br>
+        3. SSE-C (Client Side, where you encrypt on-prem then transfer)<br><br>
+
+        Client Side Master Key<br>
+        Cloud HSM (Hardware Security Module) - create instance with a master key that you manage yourself, used for Regulatory purposes<br>
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-2"></div>
+      <div class="col-2 content-left">
+          Storage Gateway
+      </div>
+      <div class="col-6 content">
+        Connects on-premise software appliance with cloud-based storage <br><br>
+        1. File Gateway: provides access to S3 from on-prem NFS<br>
+        2. Volume Gateway: provides S3 storage volume as iSCSI device<br>
+         - Cached Volume: all data is stored on S3, and frequently access data is stored on-prem <br>
+         - Stored Volume: all data is on-prem, asynchronously backed up to S3<br>
+        3. Tape Gateway: archive our backup data to Glacier<br>
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+
+      <div class="row align-items-center">
+        <div class="col-2"></div>
+        <div class="col-2 content-left">
+          Other Details on Storage
+        </div>
+        <div class="col-6 content">
+          You have to explicitly turn on "Termination Protection" since EBS backed instances have a default "Delete on Termination" setting on the instance that will delete the Root Volume<br>
+          <br>
+          You can enable Root Volume Encryption on certain instance types only.<br>
+<br>
+          If you are hosting a static web page on S3, use an A Alias to point to the Host URL
+        </div>
+        <div class="col-2"></div>
+      </div>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+        <!-- End of Storage Section -->
+        <!-- Start of Databases Section -->
+
+        <div class="row align-items-center row-border">
+          <div class="col-2"></div>
+          <div class="col-2 section-img">
+            <img src="media/rds.png" alt="RDS">
+          </div>
+          <div class="col-6 section-title">
+            <h4 id="dbs">Databases</h4>
+          </div>
+          <div class="col-2"></div>
+        </div>
+
+          <div class="row align-items-center">
+            <div class="col-2"></div>
+            <div class="col-2 content-left">
+              RDS - Relational Database Service
+            </div>
+            <div class="col-6 content">
+              Managed Service that offers Fixed Schema databases (columns and rows) with automated redundancy and backup; good for OLTP<br>
+              Supports: Maria, Aurora, PostgreSQL, SQL, MSSQL, Oracle<br>
+<br>          Aurora: by default stores 6 copies of your data<br>
+            There is no charge associated with replicating your RDS instance.<br>
+            You can't SSH or RDP into the RDS instance<br>
+              <b>Use Cases:</b><br>
+              Complex transactions and queries<br>
+              Medium-high qeury/write rate<br>
+              No more than single worker node/shard<br>
+              High durability <br>
+              <b>NOT for:</b><br>
+              Massive read/write rates (150K write/second)<br>
+              Sharding due to high data size or throughput demands<br>
+              Simple GET/PUT requests and NoSQL qeuries (dynamoDB is better)<br>
+              RDBMS customization<br>
+              -> Instead use an EC2 instance to host the DB<br>
+
+<br>
+            Amazon RDS provides two different methods for backing up and restoring your DB instance(s) automated backups and database snapshots (DB Snapshots).<br>
+            When automated backups are turned on for your DB Instance, Amazon RDS automatically performs a full daily snapshot of your data (during your preferred backup window) and captures transaction logs (as updates to your DB Instance are made).<br>
+            Retention Period: by default 7 days, max up to 35 days.<br>
+            DB Snapshots are user-initiated and enable you to back up your DB instance in a known state as frequently as you wish, and then restore to that specific state at any time. <br>
+<br>
+              <b>Optimization Techniques:</b><br>
+              1. Elastic Cache<br>
+              Caching layer for DB’s where developers have to code the function to move data to cache and that it is serving requests, it is not an automatic service<br>
+              Memcached and Redis engines<br>
+              2. Read Replica<br>
+              A DB with another DNS name for only READ data<br>
+              Can be in another AZ or Region<br>
+              Needs sync with PRIMARY DB<br>
+              Sync latency of Aurora is 60ms<br>
+              Use cases: data warehouse, DB migrations (create RR, point requests there, migrate 	PRIMARY, sync, revert DNS pointer<br>
+              3. Elastic Load Balancer<br>
+              4. Scale Up DB instance<br>
+              5. Sharding: split data into multiple DB's to increase query efficiency, highly depends on schema structure<br>
+<br>
+              <b>Multi-AZ Deployment</b><br>
+              An availability measure, and NOT a performance improvement measure <br>
+              Achieve HA by replicating across multiple AZ's manually, AWS does Master/Secondary asynchronous replication for you after you set it up<br>
+              Multi-AZ deployments utilize synchronous replication, making database writes concurrently on both the primary and standby so that the standby will be up-to-date in the event a failover occurs.<br>
+              While our technological implementation for Multi-AZ DB Instances maximizes data durability in failure scenarios, it precludes the standby from being accessed directly or used for read operations.<br>
+              The fault tolerance offered by Multi-AZ deployments make them a natural fit for production environments.<br>
+
+              <b>Read Replicas</b><br>
+              For read-heavy database workloads<br>
+              Once the Read Replica is created, database updates on the source DB instance will be propagated to the Read Replica. <br>
+              You can create multiple Read Replicas for a given source DB Instance and distribute your application’s read traffic amongst them.<br>
+              Supported by Amazon Aurora and Amazon RDS for MySQL, MariaDB and PostgreSQL; use each's built-in replication technology and are subject to its strengths and limitations<br>
+              Updates are applied to your Read Replica(s) after they occur on the source DB instance (“asynchronous” replication), and replication lag can vary significantly.<br>
+              This means recent database updates made to a standard (non Multi-AZ) source DB instance may not be present on associated Read Replicas in the event of an unplanned outage on the source DB instance. <br>
+              As such, Read Replicas do not offer the same data durability benefits as Multi-AZ deployments. <br>
+              While Read Replicas can provide some read availability benefits, they and are not designed to improve write availability.
+
+            </div>
+            <div class="col-2"></div>
+          </div>
+
+          <div class="row align-items-center">
+            <div class="col-2"></div>
+            <div class="col-2 content-left">
+              DynamoDB
+            </div>
+            <div class="col-6 content">
+              Managed service for NoSQL/Non Relational DB offers consistent, single-digit millisecond latency at any scale<br>
+              Built-in HA and Auto-Scaling<br>
+              Usually used to maintain session/state data<br>
+              No table size or throughput limits<br>
+              Global Tables allow you to replicate data between regions and resolve update conflicts<br>
+              Can be used for ElastiCache/Memcache<br>
+              Has on-demand backup <br>
+<br>
+              DynamoDB stores data in partitions. A partition is an allocation of storage for a table, backed by solid-state drives (SSDs) and automatically replicated across multiple Availability Zones within an AWS Region. <br>
+              Partition management is handled entirely by DynamoDB—you never have to manage partitions yourself.<br>
+              DynamoDB allocates additional partitions to a table in the following situations:<br>
+              1. If you increase the table's provisioned throughput settings beyond what the existing partitions can support.<br>
+              2. If an existing partition fills to capacity and more storage space is required.<br>
+              <br>
+              <b>Provisioned Throughput</b><br>
+              Read Capacity: EVENTUAL and STRONG CONSISTENCY options for items as large as 4KB<br>
+              -> eventual has better throughput but may not reflect latest written data<br>
+              -> strong ensures that all data read is at the latest version but at the cost of throughput<br>
+              Write Capacity: one write per second for items as large as 1KB<br>
+<br>
+              Data defined as Document or as Item:Attribute key-value pairs (YAML/JSON format)<br>
+              1. Partition Key - for single attributes<br>
+              2. Partition Key and Sort Key for multiple attributes<br>
+              All keys are unique<br>
+              Any "Query" needs a Partition Key, if you don't and use a SCAN function you will impact the throughput of your DB<br><br>
+              <b>Sample DynamoDB Table </b><br><img src="media/dyno.png"><br>
+<br>
+              <b>DynamoDB table with only a partition key </b><br><img src="media/dynpart.png"><br>
+              To write an item to the table, DynamoDB uses the value of the partition key as input to an internal hash function. The output value from the hash function determines the partition in which the item will be stored.<br>
+              To read an item from the table, you must specify the partition key value for the item. DynamoDB uses this value as input to its hash function, yielding the partition in which the item can be found.<br>
+<br>
+              <b>DynamoDB table with partition and sort keys</b> <br><img src="media/dynsort.png"><br>
+              To write an item to the table, DynamoDB calculates the hash value of the partition key to determine which partition should contain the item. In that partition, there could be several items with the same partition key value, so DynamoDB stores all of the items with the same partition key value physically close together, in ascending order by sort key.<br>
+              To read an item from the table, you must specify its partition key value and sort key value. DynamoDB calculates the partition key's hash value, yielding the partition in which the item can be found.<br>
+              You can read multiple items from the table in a single operation (Query), provided that the items you want have the same partition key value. DynamoDB returns all of the items with that partition key value. <br>
+              Optionally, you can apply a condition to the sort key so that it returns only the items within a certain range of values. <br>
+
+<br>
+              Re-Indexing<br>
+              1. Global Secondary Index: can change partition and sort keys<br>
+              2. Local Secondary Index: can change sort key only, only done during creation of DB table<br>
+<br>
+              Stream: captures all changes done to a table in 24 hours<br>
+              Global Tables: enable cross-region replication, needs same partition keys, and Stream enables on both sides<br>
+<br>
+              DynamoDB Accelerator (DAX):<br>
+              -> cache layer for DB reads<br>
+              -> automatically populated<br>
+              Compare it with ElastiCache, which is for Relational DBs, and DB Admin must configure cache data manually<br>
+            </div>
+            <div class="col-2"></div>
+          </div>
+
+          <div class="row align-items-center">
+            <div class="col-2"></div>
+            <div class="col-2 content-left">
+                ElastiCache
+            </div>
+            <div class="col-6 content">
+              ElastiCache is a web service that makes it easy to set up, manage, and scale a distributed in-memory data store or cache environment in the cloud. <br>
+              It provides a high-performance, scalable, and cost-effective caching solution, while removing the complexity associated with deploying and managing a distributed cache environment<br>
+              Your applications simply need information about the host names and port numbers of the ElastiCache nodes that you have deployed.<br>
+              <b>Benefits:</b><br>
+              - Decreases access latency<br>
+              - Increases throughput <br>
+              - Eases the load from databases and applications
+            </div>
+            <div class="col-2"></div>
+          </div>
+
+          <div class="row align-items-center">
+            <div class="col-2"></div>
+            <div class="col-2 content-left">
+                Other details about Databases
+            </div>
+            <div class="col-6 content">
+              RDS, DynamoDB, and ElastiCache can be used to abstract state from your application; i.e. you maintain session state in the DB while the application is stateless.<br>
+              <br>
+              Example of JSON format:<br>
+              { <br>
+                UID: 007<br>
+                Name: Bond, James<br>
+              }<br>
+              {  <br>
+                UID: M<br>
+                Location: London<br>
+                Work: MI6<br>
+              }<br>
+              The fields do not have the same attributes, can't be achieved with a Relational DB<br>
+            </div>
+            <div class="col-2"></div>
+          </div>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <!-- End of Databases Section -->
+
+
+                <!-- Start of Application Integration Section -->
+
+                <div class="row align-items-center row-border">
+                  <div class="col-2"></div>
+                  <div class="col-2 section-img">
+                    <img src="media/sqs.png" alt="APP">
+                  </div>
+                  <div class="col-6 section-title">
+                    <h4 id="flw">Application Integration</h4>
+                  </div>
+                  <div class="col-2"></div>
+                </div>
+
+                  <div class="row align-items-center">
+                    <div class="col-2"></div>
+                    <div class="col-2 content-left">
+                      SQS - Simple Queue Service
+                    </div>
+                    <div class="col-6 content">
+                      The first AWS service<br>
+                      Allows decoupling of hardware and software, similar to what a buffer would do<br>
+                      High throughput service<br>
+                      Data is replicated over many servers while in the queue<br>
+                      Can also use SSE<br>
+                      Has a Producer engine and a Consumer enginer<br>
+                      Once a message is consumed, a VISIBILITY TIMER starts where a consumer has to write the message in the DB and issue a DELETE request for the msg from the queue before the timer completes<br>
+<br>
+                      SQS is a Best Effort service, does not support FIFO because messages are stored in distributed servers<br>
+                      -> AWS guarentees that messages will be delivered "at least once"<br>
+                      -> the application has to ensure that duplicated are deleted and messages are in order<br>
+<br>
+                      If the message is corrupted and can't be pulled by the consumer, then the visibility timer expires, after it expires 5 times then the message is sent to a DEAD LETTER QUEUE<br>
+<br>
+                      Short Polling: constant polling by consumers<br>
+                      Long Polling: 20 seconds then close the TCP connection<br>
+                      Visibility Timer: default is 30 seconds, max is 12 hours<br>
+                      Queue: messages kept by default for 4 days, max 14 days<br>
+                      DelayQueue: postpone the delivery of new messages to a queue for a number of seconds, min is 0 seconds, max is 15 minutes.
+                      If your SQS is not used within 30 days, AWS will delete it<br>
+<br>
+                      SQS uses a "weighted random distribution algorithm" to select a group of servers to query for messages, sometimes these set of servers don't contain all the messages that you need so you will get back incomplete data
+
+                    </div>
+                    <div class="col-2"></div>
+                  </div>
+
+                  <div class="row align-items-center">
+                    <div class="col-2"></div>
+                    <div class="col-2 content-left">
+                      SQS FIFO
+                    </div>
+                    <div class="col-6 content">
+                      New service launched in 2017<br>
+                      Guarentees FIFO and no duplicates<br>
+                      Same price as SQS but has less throughput since it has to analyze more <br>
+                      It achieves it by using less servers for replication (simpler)
+                    </div>
+                    <div class="col-2"></div>
+                  </div>
+
+                  <div class="col-2"></div>
+                </div>
+
+                <div class="row align-items-center">
+                  <div class="col-2"></div>
+                  <div class="col-2 content-left">
+                    SNS - Simple Notification Service
+                  </div>
+                  <div class="col-6 content">
+                    Push topic to subscribers via:<br>
+                    - Email<br>
+                    - SMS<br>
+                    - SQS<br>
+                    - HTTP/HTTPS<br>
+                    - Lambda<br>
+                    When you create a Topic, an ARN (Amazon Resource Name) is created.
+                  </div>
+                  <div class="col-2"></div>
+                </div>
+
+
+                <div class="row align-items-center">
+                  <div class="col-2"></div>
+                  <div class="col-2 content-left">
+                    SWF - Simple Work Flow
+                  </div>
+                  <div class="col-6 content">
+                    Designed to help users coordinate synchronous and asynchronous tasks<br>
+                    Domain: is a collection of related workflows<br>
+                    Actions:<br>
+                    1. Workflow Starters: application that can initiate a workflow<br>
+                    2. Deciders: controls the flow of activity tasks<br>
+                    3. Activity Workers: carry out activity tasks<br>
+                  </div>
+                  <div class="col-2"></div>
+                </div>
+
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+
+                  <!-- End of Application Integration Section -->
+
+
+                  <!-- Start of Analytics Section -->
+
+                  <div class="row align-items-center row-border">
+                    <div class="col-2"></div>
+                    <div class="col-2 section-img">
+                      <img src="media/lyt.png" alt="LYT">
+                    </div>
+                    <div class="col-6 section-title">
+                      <h4 id="lyt">Analytics</h4>
+                    </div>
+                    <div class="col-2"></div>
+                  </div>
+
+                    <div class="row align-items-center">
+                      <div class="col-2"></div>
+                      <div class="col-2 content-left">
+                        Kinesis
+                      </div>
+                      <div class="col-6 content">
+                        AWS service to process data in streams <br>
+                        Stream: sharding to defined capacity<br>
+                        Firehose: no sharding, auto-scale<br>
+                        Analytics done on both Stream and Firehose using SQL type logs by the client<br>
+<br>
+                        Data is retained for 24 hours by default, max upto 7 days<br>
+<br>
+                        Agent will produce stream of records which contain Sequence ID, Partition ID, and Blob<br>
+                        Kinesis shard supports 1 Mbps IN, 2 Mbps OUT @ 1000 PUTS
+                      </div>
+                      <div class="col-2"></div>
+                    </div>
+
+                    <div class="row align-items-center">
+                      <div class="col-2"></div>
+                      <div class="col-2 content-left">
+                        Other Information about Analytics
+                      </div>
+                      <div class="col-6 content">
+                        <b>Big Data</b><br>
+                        Analyze cold data in batches (after storage), and hot data in streams (instant)<br><br>
+                        <b>Hadoop</b><br>
+                        Distrubuted operating system for Big Data clusters<br><br>
+                        <b>Tools</b><br>
+                        Elastic Map Reduce, Kinesis for streaming data, RedShift data warehouse for OLAP, QuickSight BI tool
+                      </div>
+                      <div class="col-2"></div>
+                    </div>
+
+                    <div class="col-2"></div>
+                  </div>
+
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+
+                    <!-- End of Analytics Section -->
+
+        <!-- Start of IAM Section -->
+
+        <div class="row align-items-center row-border">
+          <div class="col-2"></div>
+          <div class="col-2 section-img">
+            <img src="media/iam.png" alt="IAM">
+          </div>
+          <div class="col-6 section-title">
+            <h4 id="iam">Security, Identity, and Compliance</h4>
+          </div>
+          <div class="col-2"></div>
+        </div>
+
+          <div class="row align-items-center">
+            <div class="col-2"></div>
+            <div class="col-2 content-left">
+              IAM - Identity and Access Management
+            </div>
+            <div class="col-6 content">
+              Centrally manage access and athentication of users to AWS resources<br>
+              Free of charge service <br>
+              Define credentials based on context (who is accessing which service and what are they trying to do?)<br>
+<br>
+              IAM Entities that exist within an AWS Account:<br>
+              Users (mapped to people or applications, no default credentials)<br>
+              Groups (no default group, no nesting, user can be in multiple groups)<br>
+              Roles (temporary delegation of access, attached to permissions)<br>
+              Policy - policy document<br>
+<br>
+              Identity Provider (idP) - provides credentials to federated users<br>
+<br>
+              Best practice: least privilege principle<br>
+              All permissions are implicitly denied by default<br>
+              Any explicit deny takes precedence over an allow <br>
+              For policies, attach a policy to a group and add the user to the group<br>
+<br>
+              Policy: formal statement of one or more permissions<br>
+              Attach policy to IAM entity: user, group, or role<br>
+              Enabled fine grained access controls<br>
+              Single policy can be attached to multiple entities<br>
+              Singe entitiy can have multiple policies<br>
+<br>
+              Types of Access: <br>
+              Users with AWS accounts (email address and password)<br>
+              Assign Role to AWS services (STS)<br>
+              Delegate to other AWS accounts<br>
+              Federation Access<br>
+<br>
+              <b>Roles</b><br>
+              Provide access to externally authenticated users and to third parties<br>
+              Switch roles to access resources in your account or another AWS account (cross-account access)<br>
+              Types of Role Policies<br>
+              Trust Policy (e.g. EC2) - specifies who is allowed to assume the role<br>
+              Access Policy (e.g. S3 Full Access Read Only) - defines what actions and resources the principal is allowed access to<br>
+
+            </div>
+            <div class="col-2"></div>
+          </div>
+
+          <div class="row align-items-center">
+            <div class="col-2"></div>
+            <div class="col-2 content-left">
+              STS - Secure Token Service
+            </div>
+            <div class="col-6 content">
+              Temporary credentials (access key, secret access key, token, and expiration time) that are generated for a specific service to use another service (role)<br>
+              Details can be found in the meta-data of the instance
+            </div>
+            <div class="col-2"></div>
+          </div>
+
+          <div class="row align-items-center">
+            <div class="col-2"></div>
+            <div class="col-2 content-left">
+              SAML - Secure Assertion Markup Language
+            </div>
+            <div class="col-6 content">
+              SAML 2.0 Applications and service providers that support SAML enable you to sign in using your corporate directory credentials, such as your user name and password from Microsoft Active Directory.   <br>
+              SAML Endpoint: doesn't need an IAM user, acts as a broker between the AD and the on-prem user using your Single Sign On (SSO) credentials  <br>
+              <img src="media/saml.png">  <br>
+              Directory Services:  <br>
+              Active Directory group mapped to an IAM Role  <br>
+              or Custom Federated Policy mapped to an IAM User  <br>
+              or AWS Direct Connect: which is initiated by an AWS service as opposed to an on-prem user, AD is on-prem  <br>
+              or Simple AD: initiated by AWS since AD is on AWS  <br>
+            </div>
+            <div class="col-2"></div>
+          </div>
+
+          <div class="row align-items-center">
+            <div class="col-2"></div>
+            <div class="col-2 content-left">
+              KMS - Key Management Service
+            </div>
+            <div class="col-6 content">
+              A managed service that makes it easy for you to create and control the encryption keys used to encrypt your data. <br>
+              AWS Key Management Service is integrated with other AWS services including Amazon EBS, Amazon S3, Amazon Redshift, and others to make it simple to encrypt your data with encryption keys that you manage. <br>
+              KMS is also integrated with AWS CloudTrail to provide you with logs of all key usage to help meet your regulatory and compliance needs
+            </div>
+            <div class="col-2"></div>
+          </div>
+
+          <div class="row align-items-center">
+            <div class="col-2"></div>
+            <div class="col-2 content-left">
+              Cognito
+            </div>
+            <div class="col-6 content">
+              AWS service to handle multiple web identities, also support unauthenticated "guest" access<br>
+              Assume role with web identity call, only handles one web identity
+            </div>
+            <div class="col-2"></div>
+          </div>
+
+          <div class="row align-items-center">
+            <div class="col-2"></div>
+            <div class="col-2 content-left">
+              CloudHSM - Hardware Security Module
+            </div>
+            <div class="col-6 content">
+              Used in cases where there is strict contractual or regulatory requirements.   <br>
+              Consider it for when you need keys to be stored in dedicated, third-party validated hardware modules under your control <br>
+              FIPS 140-2 compliance <br>
+              Integration with applications using PKCS#11, Java JCE, and Microsoft CNG interfaces <br>
+              High-performance in-VPC cryptographic acceleration (bulk crypto)
+            </div>
+            <div class="col-2"></div>
+          </div>
+
+          <div class="row align-items-center">
+            <div class="col-2"></div>
+            <div class="col-2 content-left">
+              CloudTrial
+            </div>
+            <div class="col-6 content">
+              Web service that records API calls to your account even ones made via the Console <br>
+              Enabled by default on on all customers, provides visibility into past 7 days of account activity with option to view and download last 90 days <br>
+ <br>
+              Use Cases: <br>
+              1. Security Analysis: use log files as input into log management solution for analysis <br>
+              2. Track Changes: creation, modification, and deletion of resources <br>
+              3. Troubleshoot Operational Issues: quickly identify recent changes <br>
+              4. Compliance Aid: supporting info for regulatory standards to demonstrate resources are managed accordingly <br>
+              5. use with AWS Config  <br>
+ <br>
+              Can integrate with Splunk, AlertLogic, and SumoLogic <br>
+            </div>
+            <div class="col-2"></div>
+          </div>
+
+          <div class="row align-items-center">
+            <div class="col-2"></div>
+            <div class="col-2 content-left">
+              AWS Config
+            </div>
+            <div class="col-6 content">
+              Provides snapshot of AWS resource inventory, configuration history, and configuration change notifications (via SNS) <br>
+              Continuous details on all config changes  <br>
+              Enabled compliance auditing, security analysis, resource change tracking, and troubleshooting <br>
+              Views relationships between resources
+            </div>
+            <div class="col-2"></div>
+          </div>
+
+          <div class="row align-items-center">
+            <div class="col-2"></div>
+            <div class="col-2 content-left">
+              Best Practices on Day 1
+            </div>
+            <div class="col-6 content">
+              1. Stop using the root account: create an IAM user and group with full admin access, then disable root account keys and store them in a safe place.<br>
+              2. Use Multi Factor Authentication (MFA) to a sign in using software or hardware tokens<br>
+              3. Enable billing reports (e.g. Cost and Usage Report) <br>
+              4. Configure CloudTrial to log all API requests to your account and store it in a bucket that only CloudTrial has permissions for
+            </div>
+            <div class="col-2"></div>
+          </div>
+
+          <br>
+          <br>
+          <br>
+          <br>
+
+          <!-- End of IAM Section -->
+
+          <!-- Start of Management Section -->
+
+          <div class="row align-items-center row-border">
+            <div class="col-2"></div>
+            <div class="col-2 section-img">
+              <img src="media/mng.png" alt="MNG">
+            </div>
+            <div class="col-6 section-title">
+              <h4 id="mng">Management Tools</h4>
+            </div>
+            <div class="col-2"></div>
+          </div>
+
+          <div class="row align-items-center">
+            <div class="col-2"></div>
+            <div class="col-2 content-left">
+              AWS Management Console
+            </div>
+            <div class="col-6 content">
+              Password access by user <br>
+              Access Key and Secret Access Key are used for Programmatic (CLI) access <br>
+<br>
+              <b>SSH Login</b><br>
+              You need an Access Key (.pem file) to login via SSH<br>
+              If you face a "PRIVATE KEY ERROR" that means you did not CHMOD the .pem file<br>
+              Both CHMOD 400 and 600 will work (r-------- or rw-------)<br>
+              <br>
+              <b>Instance Health Checks</b> <br>
+              System Check and Instance Check <br>
+              2/2 means healthy underlying host  <br>
+ <br>
+              Stop and Start will move an instance to other underlying host <br>
+              Use when System Check failure to switch host hardware <br>
+              e.g. if you have an EBS you can preserve your data and start the instance on another host <br>
+              The public IP of the instance will change, but the private IP will stay the same <br>
+              Reboot will start the instance on the same underlying host <br>
+              Use when VM/instance has an issue <br>
+            </div>
+            <div class="col-2"></div>
+          </div>
+
+          <div class="row align-items-center">
+            <div class="col-2"></div>
+            <div class="col-2 content-left">
+              Resource Groups
+            </div>
+            <div class="col-6 content">
+              A resource group is a collection of AWS resources that are all in the same AWS region, that match criteria provided in a query, and that share one or more tags or portions of tags.  <br>
+              You use a single page to view and manage your resources. <br>
+              You build queries in the Resource Groups console or pass them as arguments to Resource Groups commands in the AWS CLI.  <br>
+              Queries include lists of resources that are specified in the following format AWS::service::resource, and tags.  <br>
+              Tags are keys that help identify and sort your resources within your organization. Optionally, tags include values for keys. <br>
+              Resource groups can be nested; a resource group can contain existing resource groups in the same region. <br>
+              By default, the AWS Management Console is organized by AWS service. But with Resource Groups, you can create a custom console that organizes and consolidates information based on criteria that you specify in tags.<br>
+              Permissions are at the account level. As long as users who are sharing your account have the correct IAM permissions, they can work with resource groups that you create.
+            </div>
+            <div class="col-2"></div>
+          </div>
+
+
+
+
+
+
+          <div class="row align-items-center">
+            <div class="col-2"></div>
+            <div class="col-2 content-left">
+              CloudWatch
+            </div>
+            <div class="col-6 content">
+              A Managed performance monitoring service of AWS services<br>
+              By default on Hyper-Visor level (CPU, Network, Disk I/O, Instance and System Status Check)<br>
+              Can define custom metrics for Memory (RAM is not Hyper-Visor level)<br>
+              Standard: free service, poll every 5 minutes<br>
+              Detailed: paid service, poll every minute<br>
+              Can cater for application logs (e.g. apache, sql)<br>
+              Can do analysis and notifications (i.e. detect when increased number of 404 errors)<br>
+              Collect (storage) --> Analyze(storage) --> Visualize<br>
+              Metrics are stored for 15 months by default<br>
+              Can trigger Auto-Scaling based on CloudWatch metrics<br>
+              <br>
+              Examples of custom metrics:   <br>
+            1. Time web pages take to load  <br>
+            2. Request error rates  <br>
+            3. Number of simultaneous connections is greater than 10 for one minute (RDS)  <br>
+            4. Number of healthy hosts is less than 5 for 10 minutes (ELB)  <br>
+            5. If CPU is greater than 60% for 5 minutes (EC2)
+            </div>
+            <div class="col-2"></div>
+          </div>
+
+          <div class="row align-items-center">
+            <div class="col-2"></div>
+            <div class="col-2 content-left">
+              CloudFormation
+            </div>
+            <div class="col-6 content">
+              Service that offers fine grained control for Infrastructure as Code<br>
+              Continuous Integration Continuous Delivery (CICD)<br>
+<br>
+              Template: script to instruct CloudFormation written in YAML/JSON<br>
+              Engine: CloudFormation service to interpret template into stack<br>
+              Stack: the overall components<br>
+<br>
+              Stack Policy: only applied when updating the stack (e.g. current is t2.micro and moving to t2.large)<br>
+              Policy "allow changes to EC2 instance type"<br>
+              Policy "deny changes to EBS and ELB"<br>
+<br>
+              Templates should execute in any region, nothing should be hard coded (i.e. bucket names) <br>
+              Before a template is run, there is a Resource Ordering stage that checks available capacity on the AWS account<br>
+<br>
+              <b>Templates Structure</b><br>
+              {<br>
+              AWSTemplateFormatVersion<br>
+              Description<br>
+              Meta-Data<br>
+              Parameters - for user input<br>
+              Mappings - uses a HASH to ensure templates are not region specific<br>
+              Conditions<br>
+              Transform<br>
+              Resources (mandatory)<br>
+              Output<br>
+              }<br>
+<br>
+              "Ref" is an intrinsic function that takes user input from parameters into the function name<br>
+              "DependsOn" attribute lets CF know to wait on a task until a specific resource has launched<br>
+              "WaitCondition" pause the creation of the stack until a signal is sent, used when the config depends on something external to AWS (uses URL's, timeout is 4500 seconds)<br>
+<br>
+              Deletion Policy: by default, all resources are to be deleted<br>
+              All or Nothing: if the template doesn't fully deploy, all changes are rolled back<br>
+              Now comes with drag and drop functionality!
+              <br>
+              <br>
+              <b>CF Workflow</b><br>
+              1. Upload template<br>
+              2. Syntax check<br>
+              3. Stack name + Parameter ingestion<br>
+              4. Start stack creation<br>
+              5. Resource ordering<br>
+              6. Resource creation<br>
+              7. Output generation<br>
+              8. Stack creation complete<br>
+<br>
+              Resources are created in parallel<br>
+              AWS has built-in dependency mechanisms (e.g. VPC before subnet before EC2)<br>
+              For more complex dependencies you can manage it yourself using the "Depends On" intrinsic attribute <br><br>
+
+            </div>
+            <div class="col-2"></div>
+          </div>
+
+          <div class="row align-items-center">
+            <div class="col-2"></div>
+            <div class="col-2 content-left">
+              OpsWork
+            </div>
+            <div class="col-6 content">
+              Configuration management service<br>
+              Integrates with Chef and Puppet<br><br>
+              Defines application architecture including:<br>
+              Package installation<br>
+              Software configuration<br>
+              Resources<br>
+              Can be used as a software lifecycle tool too:<br>
+              Simplify management of application<br>
+              Reduce number of deployment cycles<br>
+            </div>
+            <div class="col-2"></div>
+          </div>
+
+
+          <div class="row align-items-center">
+            <div class="col-2"></div>
+            <div class="col-2 content-left">
+              Elastic Beanstalk
+            </div>
+            <div class="col-6 content">
+              Automated deployment and scaling service for web applications<br>
+              Accepts Java, .NET, PHP, Node.js, Python, Ruby, Go, or Docker<br>
+              Deploys on Apache, Nginx, Passenger, IIS servers<br><br>
+              Can automatically handle:<br>
+              Load balancing<br>
+              Health checks<br>
+              Auto-Scaling<br>
+              Application platform management<br>
+              Code deployment<br>
+<br>
+              Concept of Blue-Green deployment where Blue is live production, and green is a match to the production env.<br>
+              Used to ease the transition from final test stage and live production
+            </div>
+            <div class="col-2"></div>
+          </div>
+
+          <div class="row align-items-center">
+            <div class="col-2"></div>
+            <div class="col-2 content-left">
+              Systems Manager
+            </div>
+            <div class="col-6 content">
+              Automated configuration and ongoing management of systems at scale<br>
+              Across Windows and Linux workloads<br>
+              Runs off EC2 or on-premise<br>
+              Automatically collects software inventory<br>
+              Applied OS patches<br>
+              Creates system images<br>
+              Run Command<br><br>
+
+              "Run Command" will securely manage configuration of instances<br>
+              Simpler way to automate tasks such as<br>
+              -execute shell scripts<br>
+              -run powershell commands<br>
+              -install patches<br>
+              -document management and sharing<br><br>
+              Works across multiple instances<br>
+              Has verbose visibility into results<br>
+            </div>
+            <div class="col-2"></div>
+          </div>
+
+                    <div class="row align-items-center">
+                      <div class="col-2"></div>
+                      <div class="col-2 content-left">
+                        Infrastructure Management
+                      </div>
+                      <div class="col-6 content">
+                          <img src="media/autom.png">
+                      </div>
+                      <div class="col-2"></div>
+                    </div>
+          <br>
+          <br>
+          <br>
+          <br>
+
+          <!-- End of Management Section -->
+          <!-- Start of Best Practices Section -->
+
+          <div class="row align-items-center row-border">
+            <div class="col-2"></div>
+            <div class="col-2 section-img">
+              <img src="media/best.png" alt="BST">
+            </div>
+            <div class="col-6 section-title">
+              <h4 id="bst">Best Practices</h4>
+            </div>
+            <div class="col-2"></div>
+          </div>
+
+            <div class="row align-items-center">
+              <div class="col-2"></div>
+              <div class="col-2 content-left">
+                Security
+              </div>
+              <div class="col-6 content">
+                Establish credential management policies and procedures for creating, distributing, rotating, and revoking access credentials.  <br>
+                Seperate access by role.<br>
+<br>
+              Ensure that instances are only accessible from specific IPs addresses and other resources by using Security Groups.<br>
+<br>
+              Under the shared responsibility model, you are responsible for securing the instance OS and applications.  <br>
+              Make sure the latest OS updates are installed, save your IAM, and use that for your application.
+              </div>
+              <div class="col-2"></div>
+            </div>
+
+            <div class="row align-items-center">
+              <div class="col-2"></div>
+              <div class="col-2 content-left">
+                Resource Management
+              </div>
+              <div class="col-6 content">
+                Always use meta-data and tags to track and identify your instances<br>
+<br>
+                Certain resources have soft limits, plan to request limit increases in advance as they take time to be reviewed by AWS.
+              </div>
+              <div class="col-2"></div>
+            </div>
+
+            <div class="row align-items-center">
+              <div class="col-2"></div>
+              <div class="col-2 content-left">
+                Backup and Recovery
+              </div>
+              <div class="col-6 content">
+                Take regular backups<br>
+                Deploy critical apps across multiple AZs<br>
+                Design your apps to handle dynamic IP's for when instances restart<br>
+                Monitor and respond to events (with CloudWatch)<br>
+                Ensure you have proper failover controls<br>
+                Regularly test your recovery process
+              </div>
+              <div class="col-2"></div>
+            </div>
+
+            <div class="row align-items-center">
+              <div class="col-2"></div>
+              <div class="col-2 content-left">
+                Choosing a Region
+              </div>
+              <div class="col-6 content">
+                1. Data sovereignty and compliance to governance requirements<br>
+                2. Proximity of data to users: consider latency and region specific costs<br>
+                3. Service and feature availability per region<br>
+                4. Cost effectiveness of design (e.g. cross region replication)
+              </div>
+              <div class="col-2"></div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-2"></div>
+              <div class="col-2 content-left">
+                Working with AZs
+              </div>
+              <div class="col-6 content">
+                Recommendation: start with two AZs per region for HA<br>
+              Spot instances are priced by AZs, so you can have more than one option<br>
+              DB's can be used in active/standby config across two AZs<br>
+              Applications like Cassandra or MongoDB can achieve HA over two AZ<br>
+              <img src="media/bazs.png">
+              </div>
+              <div class="col-2"></div>
+            </div>
+
+            <div class="row align-items-center">
+              <div class="col-2"></div>
+              <div class="col-2 content-left">
+                Using VPCs
+              </div>
+              <div class="col-6 content">
+                Limited cases when one VPC is appropriate: HPC, identity management, small/single applications for a small team<br>
+                Otherwise deploy Multi-VPC and Multi-Account<br>
+              <img src="media/bvpc.png">
+              </div>
+              <div class="col-2"></div>
+            </div>
+
+            <div class="row align-items-center">
+              <div class="col-2"></div>
+              <div class="col-2 content-left">
+                Using VPCs
+              </div>
+              <div class="col-6 content">
+                Hierarchical grouping of accounts<br>
+                Integration and support with IAM and other services<br>
+                Eventually consistent data replication<br><br>
+                Organizational Unit (OU): container of accounts within a root<br>
+                Root: parent container of all accounts under your organization.  Policy applies to all OUs. <br>
+                Master Account: the account that creates the organization and the member accounts, and is responsible for paying all charges.  <br>
+                Sends an "Invitation" to add member accounts, and a "Handshake" as the underlying implementation for invitations. <br>
+              <img src="media/borg.png">
+              </div>
+              <div class="col-2"></div>
+            </div>
+
+            <div class="row align-items-center">
+              <div class="col-2"></div>
+              <div class="col-2 content-left">
+                Extending On-Premise Networks to AWS (Hybrid Cloud)
+              </div>
+              <div class="col-6 content">
+                Option 1: VPN Connection between on prem and VPC-Virtual Gateway<br>
+              -On-Prem: "Customer Gatway" like a Cisco ISR that creates a tunnel using IKE or IPSec<br>
+              -VPC: Instance with Software VPN launched from the marketplace<br><br>
+              Option 2: Direct Connect<br>
+              Private network connection between AWS and your DC<br>
+              Good for hybrid cloud, improved app performance, transfering large data sets, security, and compliance. <br>
+              Alternative to IPSec VPN.  <br>
+              Supports BGP peering.  <br>
+              Requires telecom partner to provision the circuit.<br>
+              Provides 1 Gbps and 10 Gbps connections, and you can easily provision multiple connections if you need more capacity. <br>
+              You can also use AWS Direct Connect instead of establishing a VPN connection over the Internet to your Amazon VPC, avoiding the need to utilize VPN hardware that frequently can’t support data transfer rates above 4 Gbps
+              </div>
+              <div class="col-2"></div>
+            </div>
+
+
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <!-- End of Best Practices Section -->
+
+
 
 
   </div>
   <div class="footer">
-    <p>Footer</p>
+    <p>Thanks for reading and good luck on the exam!</p>
   </div>
 </body>
 </html>
